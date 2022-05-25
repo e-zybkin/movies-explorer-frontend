@@ -1,4 +1,5 @@
 import React from "react";
+import './Header.css';
 import logo from '../../images/logo.svg';
 import account from '../../images/account.svg'
 import { Link, useLocation } from 'react-router-dom';
@@ -10,21 +11,33 @@ function Header(props) {
     switch (location.pathname) {
       case '/':
         return(
-          <div className="">
-            <Link
-              to="/signup"
-              className=""
-            >Регистрация</Link>
-            <Link
-              to="/signin"
-              className=""
-            >Войти</Link>
-          </div>
+          <header className="header header_type_main">
+            <img
+              className="header__logo"
+              src={logo}
+              alt="Логотип movies-explorer"
+            />
+            <div className="header__auth-box">
+              <Link
+                to="/signup"
+                className="header__reg buttons"
+              >Регистрация</Link>
+              <Link
+                to="/signin"
+                className="header__auth buttons"
+              >Войти</Link>
+            </div>
+          </header>
         );
 
       default:
         return(
-          <>
+          <header className="header header_type_main">
+            <img
+              className="header__logo"
+              src={logo}
+              alt="Логотип movies-explorer"
+            />
             <div className="">
               <Link
                 to="/movies"
@@ -47,20 +60,15 @@ function Header(props) {
               />
               Аккаунт
             </Link>
-          </>
+          </header>
         );
     }
   }
 
   return(
-    <header className="header">
-      <img
-        className="header__logo"
-        src={logo}
-        alt="Логотип movies-explorer"
-      />
-      <>{handleHeaderLink()}</>
-    </header>
+    <>
+      {handleHeaderLink()}
+    </>
   )
 }
 

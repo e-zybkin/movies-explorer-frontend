@@ -10,7 +10,17 @@
 
 .wrapper {
   min-width: 320px;
-  max-width: 1140px;
+  max-width: 1280px;
   margin: 0 auto;
   color: #FFFFFF;
+}
+
+.buttons {
+  transition: opacity 0.25s linear;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.buttons:hover {
+  opacity: 0.6;
 }

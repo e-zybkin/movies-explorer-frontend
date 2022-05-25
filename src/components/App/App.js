@@ -24,7 +24,7 @@ function App() {
             }
           />
 
-          <Route
+          {/*<Route
             path='/movies'
             element={
               <Movies
@@ -67,7 +67,7 @@ function App() {
 
               />
             }
-          />
+          />*/}
 
         </Routes>
       </div>
