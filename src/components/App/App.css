@@ -24,3 +24,20 @@
 .buttons:hover {
   opacity: 0.6;
 }
+
+.section{
+  box-sizing: border-box;
+  padding-left: 70px;
+  padding-right: 70px;
+}
+
+.section__title{
+  border-bottom: 1px solid #DADADA;
+  padding-bottom: 23px;
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 27px;
+  text-align: left;
+  margin-top: 110px;
+  margin-bottom: 0px;
+}

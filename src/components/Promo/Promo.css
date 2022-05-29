@@ -3,12 +3,13 @@
   min-height: 574px;
   display: flex;
   background-color: #073042;
+  justify-content: space-between;
 }
 
 .promo__box{
   max-width: 640px;
   min-height: 424px;
-  margin: 75px 190px 75px 70px;
+  margin: 75px 0px;
 }
 
 .promo__title{
@@ -46,5 +47,4 @@
   width: 310px;
   height: 304px;
   margin-top: 75px;
-  margin-right: 70px;
 }

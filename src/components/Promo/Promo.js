@@ -5,7 +5,7 @@ import planet from '../../images/web-planet.png';
 
 function Promo(props) {
   return(
-    <section className="promo">
+    <section className="promo section">
       <div className="promo__box">
         <h1 className="promo__title">
           Учебный проект студента факультета <br />Веб-разработки.
@@ -22,12 +22,12 @@ function Promo(props) {
           offset={-70}
           duration={500}
         >Узнать больше</Link>
-        </div>
-        <img
-          className="promo__pic"
-          src={planet}
-          alt="Земля веб-разработчиков"
-        />
+      </div>
+      <img
+        className="promo__pic"
+        src={planet}
+        alt="Земля веб-разработчиков"
+      />
     </section>
   )
 }
