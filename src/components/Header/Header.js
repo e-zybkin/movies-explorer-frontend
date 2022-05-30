@@ -11,7 +11,7 @@ function Header(props) {
     switch (location.pathname) {
       case '/':
         return(
-          <header className="header header_type_main">
+          <header className="header header_type_main section">
             <img
               className="header__logo"
               src={logo}
@@ -32,12 +32,18 @@ function Header(props) {
 
       default:
         return(
-          <header className="header header_type_main">
-            <img
-              className="header__logo"
-              src={logo}
-              alt="Логотип movies-explorer"
-            />
+          <header className="header header_type_other section">
+            <Link
+              to="/"
+              className="buttons"
+            >
+              <img
+                className="header__logo"
+                src={logo}
+                alt="Логотип movies-explorer"
+              />
+            </Link>
+
             <div className="">
               <Link
                 to="/movies"

@@ -1,0 +1,65 @@
+.about-me{
+  max-width: 1280px;
+  min-height: 1079px;
+  display: flex;
+  flex-direction: column;
+}
+
+.about-me__box{
+  display: flex;
+  margin-top: 66px;
+  margin-bottom: 100px;
+  justify-content: space-between;
+}
+
+.about-me__info{
+  max-width: 600px;
+}
+
+.about-me__name{
+  font-size: 50px;
+  font-weight: 400;
+  line-height: 58px;
+  letter-spacing: -0.04em;
+  text-align: left;
+  margin: 0 0 18px 0;
+}
+
+.about-ma__status{
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: 0px;
+  text-align: left;
+  margin: 0 0 26px 0;
+}
+
+.about-me__text{
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 22px;
+  letter-spacing: 0px;
+  text-align: left;
+  margin: 0 0 56px 0;
+}
+
+.about-me__photo{
+  width: 270px;
+  height: 327px;
+  object-fit: cover;
+  object-position: top;
+  border-radius: 10px;
+}
+
+.about-me__link{
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 17px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #FFFFFF;
+}
+
+.about-me__link:nth-of-type(2){
+  margin-left: 20px;
+}
