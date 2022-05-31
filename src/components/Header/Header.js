@@ -33,37 +33,34 @@ function Header(props) {
       default:
         return(
           <header className="header header_type_other section">
-            <Link
-              to="/"
-              className="buttons"
-            >
-              <img
-                className="header__logo"
-                src={logo}
-                alt="Логотип movies-explorer"
-              />
-            </Link>
+            <div className="header__links">
+              <Link
+                to="/"
+                className="header__logo-button buttons"
+              >
+                <img
+                  className="header__logo"
+                  src={logo}
+                  alt="Логотип movies-explorer"
+                />
+              </Link>
 
-            <div className="">
               <Link
                 to="/movies"
-                className=""
+                className="header__link buttons"
               >Фильмы</Link>
+
               <Link
                 to="/saved-movies"
-                className=""
+                className="header__link buttons"
               >Сохранённые фильмы</Link>
             </div>
 
+
             <Link
               to="/"
-              className=""
+              className="header__account-button buttons"
             >
-              <img
-                src={account}
-                className=""
-                alt="Аккаунт"
-              />
               Аккаунт
             </Link>
           </header>

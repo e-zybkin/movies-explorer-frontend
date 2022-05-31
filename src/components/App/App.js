@@ -24,7 +24,7 @@ function App() {
             }
           />
 
-          {/*<Route
+          <Route
             path='/movies'
             element={
               <Movies
@@ -33,7 +33,7 @@ function App() {
             }
           />
 
-          <Route
+          {/*<Route
             path='/saved-movies'
             element={
               <SavedMovies
