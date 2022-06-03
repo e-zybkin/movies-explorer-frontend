@@ -7,6 +7,7 @@ import Profile from '../Profile/Profile';
 import Register from '../Register/Register';
 import Login from '../Login/Login';
 import { Route, Routes, Navigate, useNavigate } from 'react-router-dom';
+import { cards } from '../../utils/constants';
 
 
 function App() {
@@ -28,7 +29,7 @@ function App() {
             path='/movies'
             element={
               <Movies
-
+                cards={cards}
               />
             }
           />

@@ -1,0 +1,5 @@
+.cards-grid{
+  display: grid;
+  padding-top: 80px;
+  border-top: 1px solid #424242;
+}
