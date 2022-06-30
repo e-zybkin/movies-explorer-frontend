@@ -1,7 +1,9 @@
-.search{
+.seacrh__cover{
+  width: 100%;
   min-height: 212px;
   display: flex;
   align-items: center;
+  border-bottom: 1px solid #424242;
 }
 
 .search__form{

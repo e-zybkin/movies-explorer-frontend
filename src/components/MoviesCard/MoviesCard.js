@@ -3,20 +3,20 @@ import './MoviesCard.css'
 
 function MoviesCard(props) {
   return(
-    <article>
+    <article className="card">
       <img
-        className=""
+        className="card__pic"
         src={props.poster}
         alt=""
       />
-      <div>
-        <div>
-          <h5>{props.name}</h5>
-          <p>{props.time}</p>
+      <div className="card__desc">
+        <div className="card__info">
+          <h5 className="card__name">{props.name}</h5>
+          <p className="card__time">{props.time}</p>
         </div>
         <button
           type="button"
-          className=""
+          className="card__like buttons"
         />
       </div>
     </article>
