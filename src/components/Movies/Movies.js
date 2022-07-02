@@ -5,7 +5,6 @@ import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import MoreMovies from "../MoreMovies/MoreMovies";
 import Footer from "../Footer/Footer";
 
-
 function Movies(props) {
   return(
     <>

@@ -1,7 +1,6 @@
 import React from "react";
 import './Header.css';
 import logo from '../../images/logo.svg';
-import account from '../../images/account.svg'
 import { Link, useLocation } from 'react-router-dom';
 
 function Header(props) {

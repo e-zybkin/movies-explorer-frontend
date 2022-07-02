@@ -60,6 +60,24 @@
   margin-top: 3px;
 }
 
+.card__delete{
+  background-image: url(../../images/delButton.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  border: none;
+  width: 9px;
+  height: 9px;
+  background-color: #222222;
+  margin-top: 3px;
+  opacity: 0;
+  transition: opacity 0.2s linear;
+}
+
 .card__like_activated {
   background-image: url(../../images/like-active.svg);
+}
+
+.card:hover .card__delete{
+  opacity: 1;
 }
