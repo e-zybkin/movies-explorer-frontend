@@ -1,46 +1,56 @@
 import React from "react";
 import './Profile.css';
 import Header from "../Header/Header";
-import AuthPage from "../AuthPage/AuthPage";
+import { Link } from "react-router-dom";
 
 function Profile(props) {
   return(
     <>
       <Header />
       <main>
-        <AuthPage
-          name="profile"
-          title={`Привет, ${props.name}!`}
-          submitText="Редактировать"
-        >
-          <div className="input-box">
-            <input
-              required
-              minLength="2"
-              maxLength="20"
-              type="text"
-              placeholder="Имя"
-              id="name-input"
-              className="auth-page__input auth-page__input_type_name"
-              name="name"
-            />
-            <span className="auth-page__input-error name-input-error"></span>
-          </div>
+        <section className="profile">
+          <h3 className="profile__title">{`Привет, ${props.name}!`}</h3>
+          <form
+            className="profile__form"
+            name="profile"
+          >
+            <div className="profile__input-box">
+              <label className="profile__label">
+                <p className="profile__label-caption">Имя</p>
+                <input
+                  required
+                  minLength="2"
+                  maxLength="20"
+                  type="text"
+                  id="name-input"
+                  value={props.name}
+                  className="profile__label-input profile__label-input_type_name"
+                  name="name"
+                />
+              </label>
 
-          <div className="input-box">
-            <input
-              required
-              minLength="2"
-              maxLength="40"
-              type="text"
-              placeholder="Email"
-              id="mail-input"
-              className="auth-page__input auth-page__input_type_mail"
-              name="mail"
-            />
-            <span className="auth-page__input-error mail-input-error"></span>
-          </div>
-        </AuthPage>
+              <label className="profile__label">
+                <p className="profile__label-caption">Email</p>
+                <input
+                  required
+                  minLength="2"
+                  maxLength="40"
+                  type="text"
+                  id="mail-input"
+                  value="JaCkZ0212@yandex.ru"
+                  className="profile__label-input profile__label-input_type_mail"
+                  name="mail"
+                />
+              </label>
+            </div>
+
+            <button
+              type="button"
+              className="profile__editButton buttons"
+            >Редактировать</button>
+          </form>
+          <Link to="/signin" className="profile__sign-out buttons">Выйти из аккаунта</Link>
+        </section>
       </main>
     </>
   );

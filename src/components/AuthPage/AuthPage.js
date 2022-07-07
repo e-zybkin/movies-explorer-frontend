@@ -1,6 +1,7 @@
 import React from "react";
 import './AuthPage.css';
 import { Link, useLocation } from "react-router-dom";
+import logo from "../../images/logo.svg";
 
 function AuthPage(props) {
   const location = useLocation();
@@ -9,24 +10,17 @@ function AuthPage(props) {
     switch (location.pathname) {
       case '/signin':
         return(
-          <div className="sign-in">
-            <p>Ещё не зарегистрированы?</p>
-            <Link to="/signup" className="sign-up__link buttons">Регистрация</Link>
+          <div className="auth-link">
+            <p className="auth-link__text">Ещё не зарегистрированы?</p>
+            <Link to="/signup" className="auth-link__button buttons">Регистрация</Link>
           </div>
         );
 
       case '/signup':
         return(
-          <div className="sign-up">
-            <p>Уже зарегистрированы?</p>
-            <Link to="/signin" className="sign-in__link buttons">Войти</Link>
-          </div>
-        );
-
-      case '/profile':
-        return(
-          <div className="sign-up">
-            <Link to="/signin" className="sign-in__link buttons">Выйти из аккаунта</Link>
+          <div className="auth-link">
+            <p className="auth-link__text">Уже зарегистрированы?</p>
+            <Link to="/signin" className="auth-link__button buttons">Войти</Link>
           </div>
         );
 
@@ -36,33 +30,23 @@ function AuthPage(props) {
 
   return(
     <section className="auth-page">
+      <img
+        className="auth-page__logo"
+        src={logo}
+        alt="Логотип movies-explorer"
+      />
       <h3 className="auth-page__title">{props.title}</h3>
       <form
-        className={`auth-page__form auth-page__form_type_${props.name}`}
+        className="auth-page__form"
         name={props.name}
         onSubmit={props.onSubmit}>
         {props.children}
         <button
-          type={`${location.pathname === '/profile' ? 'button' : 'submit'}`}
-          className={`${location.pathname === '/profile' ? 'auth-page__edit' : 'auth-page__subButton'}`}
+          type="submit"
+          className="auth-page__subButton buttons"
         >{props.submitText}</button>
       </form>
       {handleAuthButton()}
-      {/*{props.reg ?
-        location.pathname === '/profile' ?
-          <div className="sign-up">
-            <Link to="/signin" className="sign-in__link buttons">Выйти из аккаунта</Link>
-          </div> :
-            <div className="sign-in">
-              <p>Ещё не зарегистрированы?</p>
-              <Link to="/signup" className="sign-up__link buttons">Регистрация</Link>
-            </div>
-          :
-            <div className="sign-up">
-              <p>Уже зарегистрированы?</p>
-              <Link to="/signin" className="sign-in__link buttons">Войти</Link>
-            </div>
-      }*/}
     </section>
   );
 }
