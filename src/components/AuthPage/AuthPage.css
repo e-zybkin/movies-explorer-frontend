@@ -40,7 +40,6 @@
 }
 
 .auth-page__form {
-  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -72,6 +71,7 @@
 }
 
 .auth-page__label {
+  position: relative;
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -99,5 +99,15 @@
 }
 
 .auth-page__input:focus {
-  border-bottom: 1px solid #4285F4;
+  border-bottom-color: #4285F4;
+}
+
+.auth-page__input_type_error {
+  color: #EE3465;
+}
+
+.auth-page__input-error {
+  position: absolute;
+  top: 113%;
+  color: #EE3465;
 }

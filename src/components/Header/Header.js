@@ -57,7 +57,7 @@ function Header(props) {
 
 
             <Link
-              to="/"
+              to="/profile"
               className="header__account-button buttons"
             >
               Аккаунт

@@ -30,11 +30,17 @@ function AuthPage(props) {
 
   return(
     <section className="auth-page">
-      <img
-        className="auth-page__logo"
-        src={logo}
-        alt="Логотип movies-explorer"
-      />
+      <Link
+        to="/"
+        className="auth-page__logo-button buttons"
+      >
+        <img
+          className="auth-page__logo"
+          src={logo}
+          alt="Логотип movies-explorer"
+        />
+      </Link>
+
       <h3 className="auth-page__title">{props.title}</h3>
       <form
         className="auth-page__form"

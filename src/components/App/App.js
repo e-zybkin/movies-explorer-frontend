@@ -6,7 +6,8 @@ import SavedMovies from '../SavedMovies/SavedMovies'
 import Profile from '../Profile/Profile';
 import Register from '../Register/Register';
 import Login from '../Login/Login';
-import { Route, Routes, Navigate, useNavigate } from 'react-router-dom';
+import NotFound from '../NotFound/NotFound';
+import { Route, Routes } from 'react-router-dom';
 import { cards, savedCards } from '../../utils/constants';
 
 
@@ -70,6 +71,14 @@ function App() {
             }
           />
 
+          <Route
+            path='*'
+            element={
+              <NotFound
+
+              />
+            }
+          />
         </Routes>
       </div>
     </div>
