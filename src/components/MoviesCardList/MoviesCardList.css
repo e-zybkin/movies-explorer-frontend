@@ -11,3 +11,21 @@
 .cards-grid_type_saved{
   padding-bottom: 247px;
 }
+
+@media screen and (max-width: 1279px) {
+  .cards-grid {
+    grid-template-columns: repeat(2, 339px);
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .cards-grid {
+    column-gap: 30px;
+    row-gap: 30px;
+    padding-bottom: 30px;
+  }
+
+  .cards-grid_type_saved {
+    padding-bottom: 170px;
+  }
+}

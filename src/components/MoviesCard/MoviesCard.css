@@ -81,3 +81,17 @@
 .card:hover .card__delete{
   opacity: 1;
 }
+
+@media screen and (max-width: 767px) {
+  .card {
+    grid-template-rows: 190px 72px;
+  }
+
+  .card__name {
+    margin-bottom: 15px;
+  }
+
+  .card__desc {
+    margin: 14px;
+  }
+}

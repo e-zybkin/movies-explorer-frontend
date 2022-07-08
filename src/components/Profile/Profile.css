@@ -74,3 +74,18 @@
   color: white;
   outline: none;
 }
+
+@media screen and (max-width: 767px) {
+  .profile {
+    margin-top: 236px;
+    min-height: 714px;
+  }
+
+  .profile__form {
+    min-height: 288px;
+  }
+
+  .profile__title {
+    margin-bottom: 96px;
+  }
+}
