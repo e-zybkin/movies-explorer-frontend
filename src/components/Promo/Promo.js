@@ -8,7 +8,7 @@ function Promo(props) {
     <section className="promo section">
       <div className="promo__box">
         <h1 className="promo__title">
-          Учебный проект студента факультета <br />Веб-разработки.
+          Учебный проект студента факультета Веб&#8209;разработки.
         </h1>
         <p className="promo__text">
           Листайте ниже, чтобы узнать

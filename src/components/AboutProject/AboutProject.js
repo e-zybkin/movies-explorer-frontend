@@ -2,7 +2,7 @@ import './AboutProject.css';
 
 function Promo() {
   return(
-    <section className="about-project section" id="aboutProject">
+    <section className="about-project section paddings" id="aboutProject">
       <h2 className='about-project__title section__title'>О проекте</h2>
       <div className='about-project__grid'>
         <h3 className='about-project__grid-title'>Дипломный проект включал 5 этапов</h3>

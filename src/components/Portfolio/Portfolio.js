@@ -12,9 +12,9 @@ function Portfolio() {
         rel="noreferrer"
       >Статичный сайт
         <img
-          className=''
+          className='portfolio__link-pic'
           src={pointer}
-          alt=''
+          alt='стрелочка ссылки'
         />
       </a>
 
@@ -25,9 +25,9 @@ function Portfolio() {
         rel="noreferrer"
       >Адаптивный сайт
         <img
-          className=''
+          className='portfolio__link-pic'
           src={pointer}
-          alt=''
+          alt='стрелочка ссылки'
         />
       </a>
 
@@ -38,9 +38,9 @@ function Portfolio() {
         rel="noreferrer"
       >Одностраничное приложение
         <img
-          className=''
+          className='portfolio__link-pic'
           src={pointer}
-          alt=''
+          alt='стрелочка ссылки'
         />
       </a>
     </section>

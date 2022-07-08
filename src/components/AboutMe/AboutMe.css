@@ -25,7 +25,7 @@
   margin: 0 0 18px 0;
 }
 
-.about-ma__status{
+.about-me__status{
   font-size: 18px;
   font-weight: 500;
   line-height: 20px;
@@ -62,4 +62,47 @@
 
 .about-me__link:nth-of-type(2){
   margin-left: 20px;
+}
+
+@media screen and (max-width: 1279px) {
+  .about-me__info {
+    max-width: 464px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .about-me {
+    min-height: 994px;
+  }
+
+  .about-me__box {
+    margin-bottom: 90px;
+  }
+
+  .about-me__info {
+    max-width: 364px;
+  }
+
+  .about-me__photo {
+    width: 255px;
+    height: 307px;
+  }
+
+  .about-me__name {
+    font-size: 40px;
+    line-height: 40px;
+    margin-bottom: 16px;
+  }
+
+  .about-me__status {
+    font-size: 12px;
+    line-height: 18px;
+    margin-bottom: 20px;
+  }
+
+  .about-me__text {
+    font-size: 12px;
+    line-height: 18px;
+    margin-bottom: 50px;
+  }
 }

@@ -18,6 +18,7 @@
 .search__box{
   height: 40px;
   display: flex;
+  justify-content: space-between;
   align-items: center;
   border-right: 1px solid #505050;
   align-self: center;
@@ -53,5 +54,23 @@
   letter-spacing: 0px;
   text-align: center;
   border: none;
-  margin-left: 15px;
+  margin-right: 19px;
+}
+
+@media screen and (max-width: 1279px) {
+  .search__form {
+    grid-template-columns: 78% 22%;
+  }
+}
+
+@media screen and (max-width: 1023px) {
+  .search__form {
+    grid-template-columns: 75% 25%;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .section {
+    
+  }
 }

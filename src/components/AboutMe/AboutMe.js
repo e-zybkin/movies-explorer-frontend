@@ -4,12 +4,12 @@ import myPhoto from '../../images/me.jpg';
 
 function AboutMe() {
   return(
-    <section className='about-me section'>
+    <section className='about-me section paddings'>
       <h2 className='about-me__title section__title'>Студент</h2>
       <div className='about-me__box'>
         <div className='about-me__info'>
           <h3 className='about-me__name'>Евгений</h3>
-          <h4 className='about-ma__status'>Фронтенд-разработчик, 20 лет</h4>
+          <h4 className='about-me__status'>Фронтенд-разработчик, 20 лет</h4>
           <p className='about-me__text'>
             Ещё год назад я мало
             что понимал в мире программирования, слабо представлял,
