@@ -1,8 +1,8 @@
 import React from "react";
-import './NotFound.css';
+import './PageNotFound.css';
 import { useNavigate } from "react-router-dom";
 
-function NotFound() {
+function PageNotFound() {
   const navigate = useNavigate();
 
   return(
@@ -17,4 +17,4 @@ function NotFound() {
   );
 }
 
-export default NotFound;
+export default PageNotFound;

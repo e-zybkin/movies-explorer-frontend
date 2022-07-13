@@ -111,3 +111,10 @@
   top: 113%;
   color: #EE3465;
 }
+
+@media screen and (max-width: 767px) {
+  .auth-page {
+    min-height: 1024px;
+    padding-top: 232px;
+  }
+}

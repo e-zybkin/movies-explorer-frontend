@@ -2,9 +2,24 @@ import React from "react";
 import './Header.css';
 import logo from '../../images/logo.svg';
 import { Link, useLocation } from 'react-router-dom';
+import Burger from "../Burger/Burger";
 
 function Header(props) {
   const location = useLocation();
+  const [isNavTabOpen, setIsNavTabOpen] = React.useState(false);
+
+  React.useEffect(() => {
+    if (!isNavTabOpen) return;
+
+    document.body.classList.add('no-scroll')
+    return () => {
+      document.body.classList.remove('no-scroll');
+    }
+  }, [isNavTabOpen])
+
+  function handleBurgerClick() {
+    setIsNavTabOpen(!isNavTabOpen)
+  }
 
   function handleHeaderLink() {
     switch (location.pathname) {
@@ -32,36 +47,21 @@ function Header(props) {
       default:
         return(
           <header className="header header_type_other section">
-            <div className="header__links">
-              <Link
-                to="/"
-                className="header__logo-button buttons"
-              >
-                <img
-                  className="header__logo"
-                  src={logo}
-                  alt="Логотип movies-explorer"
-                />
-              </Link>
-
-              <Link
-                to="/movies"
-                className="header__link buttons"
-              >Фильмы</Link>
-
-              <Link
-                to="/saved-movies"
-                className="header__link buttons"
-              >Сохранённые фильмы</Link>
-            </div>
-
-
             <Link
-              to="/profile"
-              className="header__account-button buttons"
+              to="/"
+              className="header__logo-button buttons"
             >
-              Аккаунт
+              <img
+                className="header__logo"
+                src={logo}
+                alt="Логотип movies-explorer"
+              />
             </Link>
+
+            <Burger
+              isOpen={isNavTabOpen}
+              onBurgerClick={handleBurgerClick}
+            />
           </header>
         );
     }
@@ -71,7 +71,7 @@ function Header(props) {
     <>
       {handleHeaderLink()}
     </>
-  )
+  );
 }
 
 export default Header;

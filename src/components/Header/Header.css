@@ -1,6 +1,6 @@
 .header{
   max-width: 100%;
-  min-height: 74px;
+  height: 74px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -38,7 +38,7 @@
   background-color: #202020;
 }
 
-.header__links{
+/*.header__links{
   display: flex;
   align-items: center;
 }
@@ -74,5 +74,9 @@
   letter-spacing: 0px;
   padding-right: 12px;
   padding-left: 31px;
+}*/
+
+@media screen and (max-width: 767px) {
+
 }
 

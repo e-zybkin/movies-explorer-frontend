@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-top: 246px;
 }
 
 .notFound__title {
@@ -11,7 +12,7 @@
   letter-spacing: 0em;
   text-align: center;
   margin: 0;
-  padding-top: 246px;
+
 }
 
 .notFound__caption {
@@ -33,4 +34,11 @@
   background-color: #202020;
   border: none;
   margin-top: 184px;
+}
+
+@media screen and (max-width: 767px) {
+  .notFound {
+    padding-top: 408px;
+    padding-bottom: 222px;
+  }
 }

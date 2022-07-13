@@ -6,12 +6,13 @@ import SavedMovies from '../SavedMovies/SavedMovies'
 import Profile from '../Profile/Profile';
 import Register from '../Register/Register';
 import Login from '../Login/Login';
-import NotFound from '../NotFound/NotFound';
+import PageNotFound from '../PageNotFound/PageNotFound';
 import { Route, Routes } from 'react-router-dom';
 import { cards, savedCards } from '../../utils/constants';
 
 
 function App() {
+
   return (
     <div className="page">
       <div className="wrapper">
@@ -74,7 +75,7 @@ function App() {
           <Route
             path='*'
             element={
-              <NotFound
+              <PageNotFound
 
               />
             }
