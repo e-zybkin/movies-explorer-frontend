@@ -58,9 +58,7 @@
     padding-left: 30px;
     padding-right: 30px;
   }
-}
-
-@media screen and (max-width: 767px) {
+  
   .paddings {
     padding-left: 50px;
     padding-right: 50px;
@@ -68,5 +66,17 @@
 
   .section__title {
     margin-top: 90px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .section {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .paddings {
+    padding-left: 18px;
+    padding-right: 18px;
   }
 }

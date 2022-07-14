@@ -44,7 +44,7 @@
   transform: rotate(-45deg) translate(35px, 35px);
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 1023px) {
   .burger {
     display: flex;
     flex-direction: column;

@@ -82,7 +82,7 @@
   opacity: 1;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 1023px) {
   .card {
     grid-template-rows: 190px 72px;
   }

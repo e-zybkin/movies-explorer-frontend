@@ -36,7 +36,7 @@
   margin-top: 184px;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 1023px) {
   .notFound {
     padding-top: 408px;
     padding-bottom: 222px;
