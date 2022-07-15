@@ -58,3 +58,9 @@ input:checked + .filter__slider::before{
   text-align: left;
   margin: 0 0 0 14px;
 }
+
+@media screen and (max-width: 767px) {
+  .filter__name {
+    font-size: 11px;
+  }
+}

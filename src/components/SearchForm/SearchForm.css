@@ -78,3 +78,28 @@
     width: 85%;
   }
 }
+
+@media screen and (max-width: 767px) {
+  .search__form {
+    background-color: #202020;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 44px;
+  }
+
+  .search__box {
+    width: 100%;
+    border: none;
+    background-color: #222222;
+    margin-bottom: 45px;
+    min-height: 72px;
+    border-radius: 9px;
+  }
+
+  .search__input {
+    width: 74%;
+    font-size: 14px;
+    background-image: none;
+    padding-left: 19px;
+  }
+}

@@ -25,3 +25,10 @@
     padding-bottom: 80px;
   }
 }
+
+@media screen and (max-width: 767px) {
+  .more__button {
+    width: 240px;
+    height: 36px;
+  }
+}

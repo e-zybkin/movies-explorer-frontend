@@ -95,3 +95,20 @@
     margin: 14px;
   }
 }
+
+@media screen and (max-width: 767px) {
+  .card {
+    grid-template-rows: 168px 69px;
+  }
+
+  .card__name {
+    font-size: 12px;
+    line-height: 15px;
+    margin-bottom: 14px;
+  }
+
+  .card__time {
+    font-size: 10px;
+    line-height: 12px;
+  }
+}

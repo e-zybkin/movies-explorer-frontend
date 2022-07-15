@@ -46,6 +46,12 @@
   overflow: hidden;
 }
 
+.blur {
+  background-color: #000000;
+  opacity: 0.3;
+  z-index: 1;
+}
+
 @media screen and (max-width: 1279px) {
   .section {
     padding-left: 60px;
@@ -58,7 +64,7 @@
     padding-left: 30px;
     padding-right: 30px;
   }
-  
+
   .paddings {
     padding-left: 50px;
     padding-right: 50px;
@@ -78,5 +84,15 @@
   .paddings {
     padding-left: 18px;
     padding-right: 18px;
+  }
+
+  .section__title {
+    margin-top: 70px;
+    padding-bottom: 28px;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 22px;
+    letter-spacing: -0.04em;
+    text-align: left;
   }
 }

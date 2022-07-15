@@ -1,5 +1,10 @@
 .navTab {
   width: 100%;
+}
+
+
+.navTab__content {
+  width: 100%;
   display: flex;
   justify-content: space-between;
 }
@@ -50,6 +55,25 @@
 
 @media screen and (max-width: 1023px) {
   .navTab {
+    display: flex;
+    position: fixed;
+    background: rgba(0, 0, 0, 0.3);
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    opacity: 0;
+    visibility: hidden;
+    transition: visibility 0.3s, opacity 0.2s ease-in-out;
+    z-index: 2;
+  }
+
+  .navTab_opened {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .navTab__content {
     position: fixed;
     flex-flow: column nowrap;
     background-color: #202020;
@@ -57,13 +81,12 @@
     right: 0;
     width: 68%;
     height: 100vh;
-    z-index: 1;
     align-items: center;
     transform: translateX(100%);
-    transition: transform 0.3s ease-in-out;
+    transition: transform 0.2s ease-in-out;
   }
 
-  .navTab_opened {
+  .navTab__content_opened {
     transform: translateX(0);
   }
 
@@ -98,5 +121,19 @@
 
   .navTab__account-button {
     margin-bottom: 90px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .navTab__content {
+    width: 100%;
+  }
+
+  .navTab__link:nth-of-type(n) {
+    padding-bottom: 7px;
+  }
+
+  .navTab__link:nth-of-type(n+2) {
+    margin-top: 15px;
   }
 }

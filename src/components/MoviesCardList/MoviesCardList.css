@@ -24,3 +24,16 @@
     padding-bottom: 170px;
   }
 }
+
+@media screen and (max-width: 767px) {
+  .cards-grid {
+    padding-top: 50px;
+    padding-bottom: 26px;
+    grid-template-columns: 300px;
+    row-gap: 14px;
+  }
+
+  .cards-grid_type_saved {
+    padding-bottom: 166px;
+  }
+}

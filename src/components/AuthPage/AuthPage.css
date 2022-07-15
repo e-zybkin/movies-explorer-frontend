@@ -33,6 +33,7 @@
 .auth-link__text {
   margin: 0 6px 0 0;
   color: #8B8B8B;
+  font-weight: 400;
 }
 
 .auth-link__button {
@@ -116,5 +117,30 @@
   .auth-page {
     min-height: 1024px;
     padding-top: 232px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .auth-page {
+    min-height: 780px;
+    padding-top: 56px;
+    align-items: center;
+  }
+
+  .auth-page__title {
+    margin-top: 50px;
+    margin-bottom: 80px;
+  }
+
+  .auth-page__form {
+    max-width: 260px;
+    min-height: 468px;
+  }
+
+  .auth-page__subButton,
+  .auth-link {
+    font-size: 12px;
+    line-height: 15px;
+    margin-top: 14px;
   }
 }
