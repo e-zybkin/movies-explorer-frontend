@@ -77,6 +77,7 @@
 
   .about-me__box {
     margin-bottom: 90px;
+    align-items: center;
   }
 
   .about-me__info {

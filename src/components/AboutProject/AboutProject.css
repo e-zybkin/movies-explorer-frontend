@@ -76,6 +76,7 @@
 }
 
 @media screen and (max-width: 767px) {
+
   .about-project__grid {
     margin-top: 60px;
     margin-bottom: 60px;
@@ -86,6 +87,7 @@
       "fiveWeeks"
       "graphic";
     row-gap: 16px;
+    align-self: center;
   }
 
   .about-project__grid-title {
@@ -117,6 +119,7 @@
     grid-template-columns: 100px 184px;
     grid-template-rows: repeat(2, 35px);
     margin-bottom: 60px;
+    align-self: center;
   }
 
   .about-project__graphic-text {
