@@ -12,6 +12,10 @@ import { cards, savedCards } from '../../utils/constants';
 
 
 function App() {
+  React.useEffect(()=> {
+    document.documentElement.setAttribute('lang','rusafasdw')
+  },[])
+
 
   return (
     <div className="page">

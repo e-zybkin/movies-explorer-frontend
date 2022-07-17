@@ -30,7 +30,7 @@ function MoviesCard(props) {
       <img
         className="card__pic"
         src={props.poster}
-        alt=""
+        alt="Постер фильма"
       />
       <div className="card__desc">
         <div className="card__info">
