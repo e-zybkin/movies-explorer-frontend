@@ -1,0 +1,139 @@
+.navTab {
+  width: 100%;
+}
+
+
+.navTab__content {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.navTab__links{
+  display: flex;
+  align-items: center;
+}
+
+.navTab__link{
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 18px;
+  letter-spacing: 0em;
+  text-align: right;
+  color: white;
+  margin-left: 44px;
+}
+
+.navTab__link:nth-of-type(1) {
+  position: absolute;
+  visibility: hidden;
+}
+
+.navTab__link:nth-of-type(3) {
+  margin-left: 16px;
+}
+
+.navTab__account-button{
+  max-width: 100px;
+  text-align: center;
+  border: 2px solid rgba(170, 170, 170, 0.2);
+  background-image: url(../../images/account.svg);
+  background-repeat: no-repeat;
+  background-position: top 9px left 12px;
+  border-radius: 50px;
+  color: white;
+  box-sizing: border-box;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 16px;
+  letter-spacing: 0px;
+  padding-right: 12px;
+  padding-left: 31px;
+}
+
+@media screen and (max-width: 1023px) {
+  .navTab {
+    display: flex;
+    position: fixed;
+    background: rgba(0, 0, 0, 0.3);
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    opacity: 0;
+    visibility: hidden;
+    transition: visibility 0.3s, opacity 0.2s ease-in-out;
+    z-index: 2;
+  }
+
+  .navTab_opened {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .navTab__content {
+    position: fixed;
+    flex-flow: column nowrap;
+    background-color: #202020;
+    top: 0;
+    right: 0;
+    width: 68%;
+    height: 100vh;
+    align-items: center;
+    transform: translateX(100%);
+    transition: transform 0.2s ease-in-out;
+  }
+
+  .navTab__content_opened {
+    transform: translateX(0);
+  }
+
+  .navTab__links {
+    margin-top: 159px;
+    flex-direction: column;
+  }
+
+  .navTab__link {
+    border-bottom: 2px solid #202020;
+  }
+
+  .navTab__link:nth-of-type(n) {
+    position: relative;
+    visibility: visible;
+    margin-left: 0;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 22px;
+    letter-spacing: 0px;
+    text-align: center;
+    padding-bottom: 4px;
+  }
+
+  .navTab__link-active {
+    border-bottom: 2px solid white;
+  }
+
+  .navTab__link:nth-of-type(n+2) {
+    margin-top: 22px;
+  }
+
+  .navTab__account-button {
+    margin-bottom: 90px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .navTab__content {
+    width: 100%;
+  }
+
+  .navTab__link:nth-of-type(n) {
+    padding-bottom: 7px;
+  }
+
+  .navTab__link:nth-of-type(n+2) {
+    margin-top: 15px;
+  }
+}

@@ -1,0 +1,98 @@
+@import url(../../vendor/normalize.css);
+@import url(../../vendor/font.css);
+
+.page{
+  min-width: 320px;
+  min-height: 100vh;
+  background-color: #202020;
+  font-family: Inter, Arial, sans-serif;
+}
+
+.wrapper {
+  min-width: 320px;
+  max-width: 1280px;
+  margin: 0 auto;
+  color: #FFFFFF;
+}
+
+.buttons {
+  transition: opacity 0.25s linear;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.buttons:hover {
+  opacity: 0.6;
+}
+
+.section{
+  box-sizing: border-box;
+  padding-left: 70px;
+  padding-right: 70px;
+}
+
+.section__title{
+  border-bottom: 1px solid #DADADA;
+  padding-bottom: 23px;
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 27px;
+  text-align: left;
+  margin-top: 110px;
+  margin-bottom: 0px;
+}
+
+.no-scroll {
+  overflow: hidden;
+}
+
+.blur {
+  background-color: #000000;
+  opacity: 0.3;
+  z-index: 1;
+}
+
+@media screen and (max-width: 1279px) {
+  .section {
+    padding-left: 60px;
+    padding-right: 60px;
+  }
+}
+
+@media screen and (max-width: 1023px) {
+  .section {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+
+  .paddings {
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+
+  .section__title {
+    margin-top: 90px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .section {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .paddings {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+
+  .section__title {
+    margin-top: 70px;
+    padding-bottom: 28px;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 22px;
+    letter-spacing: -0.04em;
+    text-align: left;
+  }
+}
