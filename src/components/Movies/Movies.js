@@ -10,9 +10,12 @@ function Movies(props) {
     <>
       <Header />
       <main>
-        <SearchForm />
+        <SearchForm
+          onSearch={props.onSearch}
+        />
         <MoviesCardList
           cards={props.cards}
+          isLoading={props.isLoading}
         />
         <MoreMovies />
       </main>

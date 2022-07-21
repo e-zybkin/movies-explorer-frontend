@@ -7,12 +7,57 @@ import Profile from '../Profile/Profile';
 import Register from '../Register/Register';
 import Login from '../Login/Login';
 import PageNotFound from '../PageNotFound/PageNotFound';
-import { Route, Routes } from 'react-router-dom';
-import { cards, savedCards } from '../../utils/constants';
+import { Route, Routes, useNavigate } from 'react-router-dom';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
+import mainApi from '../../utils/MainApi';
+import moviesApi from '../../utils/MoviesApi';
+import * as auth from '../../utils/auth'
 
 
 function App() {
   document.documentElement.lang = 'ru'
+
+  const [currentUser, setCurrentuser] = React.useState({});
+
+  const [movies, setMovies] = React.useState([]);
+  const [savedMovies, setSavedMovies] = React.useState([]);
+  const [filteredMovies, setFilteredMovies] = React.useState([])
+
+  const [isLoading, setIsLoading] = React.useState(false);
+
+  const navigate = useNavigate();
+  /*
+  React.useEffect(() => {
+    if(localStorage.getItem('jwt')){
+      const jwt = localStorage.getItem('jwt');
+      auth.getContent(jwt)
+      .then((res) => {
+        if(res){
+          setLoggedIn(true)
+          navigate('/movies');
+        }
+      })
+      .catch(error => {
+        console.log('ОШИБКА: ', error)
+      })
+    }
+  }, [])
+  */
+
+  function handleSearchMovies(data) {
+    setIsLoading(true)
+
+    moviesApi.getMovies()
+      .then(result => {
+        localStorage.setItem('allMovies', JSON.stringify(result));
+      })
+      .catch(error => {
+        console.log('ОШИБКА: ', error);
+      })
+      .finally(() => {
+        setIsLoading(false)
+      })
+  }
 
   return (
     <div className="page">
@@ -32,7 +77,9 @@ function App() {
             path='/movies'
             element={
               <Movies
-                cards={cards}
+                cards={[]}
+                onSearch={handleSearchMovies}
+                isLoading={isLoading}
               />
             }
           />
@@ -41,7 +88,8 @@ function App() {
             path='/saved-movies'
             element={
               <SavedMovies
-                cards={savedCards}
+                cards={[]}
+                onSearch={''}
               />
             }
           />
