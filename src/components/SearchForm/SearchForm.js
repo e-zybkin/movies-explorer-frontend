@@ -4,6 +4,7 @@ import FilterCheckBox from '../FilterCheckBox/FilterCheckBox';
 
 function SearchForm(props) {
   const [research, setResearch] = React.useState('');
+  const [isCheckBoxActiv, setIsCheckBoxActive] = React.useState(false);
 
   function handleSearchChange(e) {
     setResearch(e.target.value)
@@ -12,8 +13,13 @@ function SearchForm(props) {
   function handleSubmit(e) {
     e.preventDefault();
     props.onSearch({
-      data: research,
+      research,
+      checkBoxState: isCheckBoxActiv,
     })
+  }
+
+  function handleCheckBoxClick () {
+    setIsCheckBoxActive(!isCheckBoxActiv)
   }
 
   return(
@@ -29,7 +35,6 @@ function SearchForm(props) {
               placeholder="Фильм"
               type="search"
               className='search__input'
-              required
               onChange={handleSearchChange}
             />
             <button
@@ -37,7 +42,10 @@ function SearchForm(props) {
               className='search__button buttons'
             >Найти</button>
           </div>
-          <FilterCheckBox />
+          <FilterCheckBox
+            handleCheckBoxClick={handleCheckBoxClick}
+            isCheckBoxActive={isCheckBoxActiv}
+          />
         </form>
       </div>
     </section>

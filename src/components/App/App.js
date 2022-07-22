@@ -49,7 +49,28 @@ function App() {
 
     moviesApi.getMovies()
       .then(result => {
-        localStorage.setItem('allMovies', JSON.stringify(result));
+        if (localStorage.getItem('allMovies')) {
+          const finalMoviesList = filterMovies(
+            JSON.parse(localStorage.getItem('allMovies')),
+            data.research,
+            data.checkBoxState
+          )
+          console.log(finalMoviesList) //убрать
+          localStorage.setItem('filteredMovies', JSON.stringify(finalMoviesList))
+          setFilteredMovies(finalMoviesList) //переделать
+          console.log(filteredMovies) //убрать
+        } else {
+          localStorage.setItem('allMovies', JSON.stringify(result));
+          const finalMoviesList = filterMovies(
+            JSON.parse(localStorage.getItem('allMovies')),
+            data.research,
+            data.checkBoxState
+          )
+          console.log(finalMoviesList) //убрать
+          localStorage.setItem('filteredMovies', JSON.stringify(finalMoviesList))
+          setFilteredMovies(finalMoviesList) //переделать
+          console.log(filteredMovies) //убрать
+        }
       })
       .catch(error => {
         console.log('ОШИБКА: ', error);
@@ -57,6 +78,22 @@ function App() {
       .finally(() => {
         setIsLoading(false)
       })
+  }
+
+  function filterMovies(movies, research, checkBoxState) {
+    return (
+      movies.filter(movie => {
+        if (checkBoxState) {
+          return (
+            movie.duration <= 40 && movie.nameRU.toLowerCase().includes(research.toLowerCase())
+          );
+        } else {
+          return (
+            movie.nameRU.toLowerCase().includes(research.toLowerCase())
+          );
+        }
+      })
+    );
   }
 
   return (
@@ -77,9 +114,10 @@ function App() {
             path='/movies'
             element={
               <Movies
-                cards={[]}
+                cards={filteredMovies}
                 onSearch={handleSearchMovies}
                 isLoading={isLoading}
+                filterMovies={filterMovies}
               />
             }
           />

@@ -12,6 +12,7 @@ function Movies(props) {
       <main>
         <SearchForm
           onSearch={props.onSearch}
+          filterMovies={props.filterMovies}
         />
         <MoviesCardList
           cards={props.cards}
