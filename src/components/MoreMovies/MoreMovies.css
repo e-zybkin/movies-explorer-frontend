@@ -19,13 +19,6 @@
   text-align: center;
 }
 
-@media screen and (max-width: 1023px) {
-  .more {
-    padding-top: 50px;
-    padding-bottom: 80px;
-  }
-}
-
 @media screen and (max-width: 767px) {
   .more__button {
     width: 240px;

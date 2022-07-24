@@ -17,8 +17,14 @@ function Movies(props) {
         <MoviesCardList
           cards={props.cards}
           isLoading={props.isLoading}
+          moviesAtPage={props.moviesAtPage}
         />
-        <MoreMovies />
+        <MoreMovies
+          moviesAtPage={props.moviesAtPage}
+          addMovies={props.addMovies}
+          filteredMovies={props.filteredMovies}
+          handleMoreMoviesClick={props.handleMoreMoviesClick}
+        />
       </main>
       <Footer />
     </>
