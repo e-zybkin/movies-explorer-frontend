@@ -34,6 +34,12 @@ function App() {
   const [loggedIn, setLoggedIn] = React.useState(false);
   const [name, setName] = React.useState('')
 
+  const [isErrorOnUpdateProfile, setIsErrorOnUpdateProfile] = React.useState(false)
+  const [isEditSuccess, setIsEditSuccess] = React.useState(false);
+
+  const [isErrorOnLogin, setIsErrorOnLogin] = React.useState(false);
+  const [isErrorOnRegister,setIsErrorOnRegister] = React.useState(false);
+
   const navigate = useNavigate();
 
   //useEffect'ы для получения пользовательских данных и проверки наличия токена
@@ -190,8 +196,7 @@ function App() {
 			/*
       а енто для попапа с сообщением об удачной регистрации
       setIsAccessSuccess(true);*/
-			navigate('/signin');
-      console.log(res)
+      handleLogin(formData);
 		})
 		.catch((err) => {
 			console.log('ОШИБКА: ', err);
@@ -210,6 +215,23 @@ function App() {
 		setCards([]);*/
 		navigate('/');
 	}
+
+  //функция редактирования пользовательских данных
+
+  function handleUpdateUser(formData) {
+    mainApi.setUserData(formData)
+      .then(result => {
+
+        setCurrentUser(result.data);
+      })
+      .catch(error => {
+        setIsErrorOnUpdateProfile(true);
+        console.log(error);
+      })
+      .finally(() => {
+        setIsEditSuccess(true);
+      })
+  }
 
   function filterMovies(movies, research, checkBoxState) {
     return (
@@ -274,8 +296,12 @@ function App() {
               element={
                 <ProtectedRoute loggedIn={loggedIn}>
                   <Profile
-                    name="Евгений"
                     signOut={signOut}
+                    onUpdate={handleUpdateUser}
+                    isErrorOnUpdateProfile={isErrorOnUpdateProfile}
+                    setIsErrorOnUpdateProfile={setIsErrorOnUpdateProfile}
+                    isEditSuccess={isEditSuccess}
+                    setIsEditSuccess={setIsEditSuccess}
                   />
                 </ProtectedRoute>
               }
