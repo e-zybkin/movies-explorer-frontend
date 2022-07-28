@@ -11,8 +11,8 @@ function Login(props) {
   const [mail, setMail] = React.useState('');
   const [password, setPassword] = React.useState('');
 
-  const [isMailValid, setIsMailValid] = React.useState(true);
-  const [isPasswordValid, setIsPasswordValid] = React.useState(true);
+  const [isMailValid, setIsMailValid] = React.useState(false);
+  const [isPasswordValid, setIsPasswordValid] = React.useState(false);
 
   const [mailError, setMailError] = React.useState('')
   const [passwordError, setPasswordError] = React.useState('')
@@ -20,16 +20,24 @@ function Login(props) {
   React.useEffect(() => {
     setMail('');
     setPassword('');
+    props.setAfterSubMessage('');
   }, [location.pathname])
 
   React.useEffect(() => {
-    if (isPasswordValid && isMailValid) {
+    props.setAfterSubMessage('');
+  }, [mail, password])
+
+  React.useEffect(() => {
+    if (isPasswordValid
+      && isMailValid
+      && mail.length > 0
+      && password.length > 0) {
       setIsButtonDisabled(false);
     } else {
       setIsButtonDisabled(true);
     }
 
-  }, [isPasswordValid, isMailValid]);
+  }, [isPasswordValid, isMailValid, mail, password]);
 
   function handlePasswordChange(e) {
     const input = e.target;
@@ -61,6 +69,10 @@ function Login(props) {
       email: mail,
       password: password,
     });
+
+    setMail('');
+    setPassword('');
+    props.setAfterSubMessage('');
   }
 
   return(

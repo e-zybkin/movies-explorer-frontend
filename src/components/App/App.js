@@ -185,20 +185,15 @@ function App() {
 	}
 
 	function handleRegister(formData) {
-		auth.register(formData.name, formData.mail, formData.password)
+		auth.register(formData.name, formData.email, formData.password)
 		.then((res) => {
-			/*
-      а енто для попапа с сообщением об удачной регистрации
-      setIsAccessSuccess(true);*/
       handleLogin(formData);
 		})
 		.catch((err) => {
 			console.log('ОШИБКА: ', err);
-			/*setIsAccessSuccess(false);
-    */		})
-		.finally(() => {
-			/*setIsInfoToolPopupOpen(true);*/
-		})
+      setAfterSubMessage('При регистрации произошла ошибка, попробуйте снова.');
+      setIsAfterSubError(true);
+    })
 	}
 
 	function signOut() {
@@ -306,6 +301,7 @@ function App() {
                   handleLogin={handleLogin}
                   afterSubMessage={afterSubMessage}
                   isAfterSubError={isAfterSubError}
+                  setAfterSubMessage={setAfterSubMessage}
                 />
               }
             />
@@ -315,6 +311,9 @@ function App() {
               element={
                 <Register
                   handleRegister={handleRegister}
+                  afterSubMessage={afterSubMessage}
+                  isAfterSubError={isAfterSubError}
+                  setAfterSubMessage={setAfterSubMessage}
                 />
               }
             />

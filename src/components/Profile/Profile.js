@@ -29,6 +29,10 @@ function Profile(props) {
   }, [currentUser])
 
   React.useEffect(() => {
+    props.setAfterEditMessage('');
+  }, [name, mail])
+
+  React.useEffect(() => {
     if (isNameValid && isMailValid && (!(name === currentUser.name) || !(mail === currentUser.email))) {
       setIsButtonDisabled(false);
     } else {
