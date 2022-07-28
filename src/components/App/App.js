@@ -32,10 +32,10 @@ function App() {
   const [isLoading, setIsLoading] = React.useState(false);
 
   const [loggedIn, setLoggedIn] = React.useState(false);
-  const [name, setName] = React.useState('')
+  const [name, setName] = React.useState('');
 
-  const [isErrorOnUpdateProfile, setIsErrorOnUpdateProfile] = React.useState(false)
-  const [isEditSuccess, setIsEditSuccess] = React.useState(false);
+  const [afterEditMessage, setAfterEditMessage] = React.useState("");
+  const [isAfterEditError, setIsAfterEditError] = React.useState(false);
 
   const [isErrorOnLogin, setIsErrorOnLogin] = React.useState(false);
   const [isErrorOnRegister,setIsErrorOnRegister] = React.useState(false);
@@ -221,15 +221,14 @@ function App() {
   function handleUpdateUser(formData) {
     mainApi.setUserData(formData)
       .then(result => {
-
+        setAfterEditMessage('Ваши данные успешно обновлены!');
+        setIsAfterEditError(false);
         setCurrentUser(result.data);
       })
       .catch(error => {
-        setIsErrorOnUpdateProfile(true);
+        setAfterEditMessage('При обновлении ваших данных произошла ошибка, попробуйте снова.');
+        setIsAfterEditError(true);
         console.log(error);
-      })
-      .finally(() => {
-        setIsEditSuccess(true);
       })
   }
 
@@ -298,10 +297,9 @@ function App() {
                   <Profile
                     signOut={signOut}
                     onUpdate={handleUpdateUser}
-                    isErrorOnUpdateProfile={isErrorOnUpdateProfile}
-                    setIsErrorOnUpdateProfile={setIsErrorOnUpdateProfile}
-                    isEditSuccess={isEditSuccess}
-                    setIsEditSuccess={setIsEditSuccess}
+                    isAfterEditError={isAfterEditError}
+                    afterEditMessage={afterEditMessage}
+                    setAfterEditMessage={setAfterEditMessage}
                   />
                 </ProtectedRoute>
               }
@@ -332,6 +330,7 @@ function App() {
               }
             />
 
+            {/*проверить*/}
             <Route
               path='/'
               element={loggedIn ? <Navigate to="/movies" /> : <Navigate to="/" />}

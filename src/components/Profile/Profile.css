@@ -44,6 +44,29 @@
   cursor: default;
 }
 
+.profile__edit-box {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile__after-edit {
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 13px;
+  letter-spacing: 0px;
+  text-align: center;
+  visibility: hidden;
+  margin-bottom: 10px;
+}
+
+.profile__after-edit_error {
+  color: #EE3465;
+}
+
+.profile__after-edit_message {
+  visibility: visible;
+}
+
 .profile__sign-out {
   font-size: 13px;
   font-weight: 500;

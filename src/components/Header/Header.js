@@ -19,6 +19,9 @@ function Header(props) {
 
   function handleBurgerClick() {
     setIsNavTabOpen(!isNavTabOpen)
+    if(location.pathname === '/profile') {
+      props.setAfterEditMessage('')
+    }
   }
 
   function handleHeaderLink() {

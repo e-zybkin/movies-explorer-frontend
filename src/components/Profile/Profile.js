@@ -18,16 +18,10 @@ function Profile(props) {
 
   const [MailError, setMailError] = useState('')
   const [NameError, setNameError] = useState('')
-  const [serverError, setServerError] = useState(false);
-  const [isUserInfoChanged, setIsUserInfoChanged] = useState(false);
 
   React.useEffect(() => {
-    setIsUserInfoChanged(props.isEditSuccess);
-  }, [props.isEditSuccess]);
-
-  React.useEffect(() => {
-    props.setIsEditSuccess(false);
-}, [location.pathname, props]);
+    props.setAfterEditMessage('');
+  }, [location.pathname]);
 
   React.useEffect(() => {
     setName(currentUser.name);
@@ -41,20 +35,9 @@ function Profile(props) {
       setIsButtonDisabled(true);
     }
 
-  }, [isNameValid, isMailValid, name, mail, currentUser.name, currentUser.email, props]);
-
-  React.useEffect(() => {
-    if (props.isErrorOnUpdateProfile) {
-      setServerError(true);
-      setIsButtonDisabled(true);
-    } else {
-      setServerError(false);
-    }
-  }, [props.isErrorOnUpdateProfile]);
+  }, [isNameValid, isMailValid, name, mail, currentUser.name, currentUser.email]);
 
   function handleNameChange(e) {
-    setServerError(false);
-
     const input = e.target;
     setName(input.value);
     setIsNameValid(input.validity.valid);
@@ -67,7 +50,6 @@ function Profile(props) {
   }
 
   function handleMailChange(e) {
-    setServerError(false);
 
     const input = e.target;
     setMail(input.value);
@@ -89,19 +71,11 @@ function Profile(props) {
     });
   }
 
-  function afterSubmit() {
-    if (serverError) {
-      return('При обновлении ваших данных произошла ошибка, попробуйте снова.');
-    } else {
-      if (isUserInfoChanged) {
-        return('Ваши данные успешно обновлены');
-      }
-    }
-  }
-
   return(
     <>
-      <Header />
+      <Header
+        setAfterEditMessage={props.setAfterEditMessage}
+      />
       <main>
         <section className="profile">
           <h3 className="profile__title">{`Привет, ${currentUser.name}!`}</h3>
@@ -148,12 +122,17 @@ function Profile(props) {
               </label>
             </div>
 
-            <span className="profile__after-edit">{afterSubmit()}</span>
-            <button
-              type="submit"
-              className={`profile__editButton buttons profile__editButton_${isButtonDisabled ? 'disabled' : ''}`}
-              disabled={isButtonDisabled}
-            >Редактировать</button>
+            <div className="profile__edit-box">
+              <span className={`profile__after-edit ${props.isAfterEditError ? "profile__after-edit_error" : ""} ${props.afterEditMessage ? "profile__after-edit_message" : ""}`}>
+                {props.afterEditMessage}
+              </span>
+              <button
+                type="submit"
+                className={`profile__editButton buttons profile__editButton_${isButtonDisabled ? 'disabled' : ''}`}
+                disabled={isButtonDisabled}
+              >Редактировать</button>
+            </div>
+
           </form>
           <button
             type="button"
