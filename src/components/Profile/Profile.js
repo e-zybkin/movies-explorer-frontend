@@ -96,6 +96,7 @@ function Profile(props) {
                     maxLength="20"
                     type="text"
                     id="name-input"
+                    pattern="[a-zA-Zа-яА-Я\s\-]+"
                     value={name || ''}
                     onChange={handleNameChange}
                     className="profile__label-input profile__label-input_type_name"

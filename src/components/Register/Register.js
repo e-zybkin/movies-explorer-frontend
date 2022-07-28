@@ -114,6 +114,7 @@ function Register(props) {
               maxLength="20"
               type="text"
               id="name-input"
+              pattern="[a-zA-Zа-яА-Я\s\-]+"
               className="auth-page__input auth-page__input_type_name"
               name="name"
               value={name || ''}
