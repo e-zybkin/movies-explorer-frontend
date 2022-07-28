@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import './Profile.css';
 import Header from "../Header/Header";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
@@ -13,11 +13,11 @@ function Profile(props) {
   const [name, setName] = React.useState('');
   const [mail, setMail] = React.useState('');
 
-  const [isMailValid, setIsMailValid] = useState(true);
-  const [isNameValid, setIsNameValid] = useState(true);
+  const [isMailValid, setIsMailValid] = React.useState(true);
+  const [isNameValid, setIsNameValid] = React.useState(true);
 
-  const [MailError, setMailError] = useState('')
-  const [NameError, setNameError] = useState('')
+  const [mailError, setMailError] = React.useState('')
+  const [nameError, setNameError] = React.useState('')
 
   React.useEffect(() => {
     props.setAfterEditMessage('');
@@ -50,11 +50,9 @@ function Profile(props) {
   }
 
   function handleMailChange(e) {
-
     const input = e.target;
     setMail(input.value);
     setIsMailValid(input.validity.valid);
-    setMailError(input.validationMessage);
 
     if(!input.validity.valid) {
       setMailError(input.validationMessage)
@@ -100,7 +98,7 @@ function Profile(props) {
                     name="name"
                   />
                 </div>
-                <span className="profile__label-input-error">{NameError}</span>
+                <span className="profile__label-input-error">{nameError}</span>
               </label>
 
               <label className="profile__label">
@@ -118,7 +116,7 @@ function Profile(props) {
                     name="mail"
                   />
                 </div>
-                <span className="profile__label-input-error">{MailError}</span>
+                <span className="profile__label-input-error">{mailError}</span>
               </label>
             </div>
 

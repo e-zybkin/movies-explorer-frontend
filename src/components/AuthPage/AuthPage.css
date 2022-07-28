@@ -48,6 +48,29 @@
   min-height: 380px;
 }
 
+.auth-page__sub-box {
+  display: flex;
+  flex-direction: column;
+}
+
+.auth-page__after-sub {
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 13px;
+  letter-spacing: 0px;
+  text-align: center;
+  visibility: hidden;
+  margin-bottom: 10px;
+}
+
+.auth-page__after-sub_error {
+  color: #EE3465;
+}
+
+.auth-page__after-sub_message {
+  visibility: visible;
+}
+
 .auth-page__subButton {
   width: 100%;
   min-height: 45px;
@@ -55,6 +78,12 @@
   border-radius: 3px;
   color: white;
   background-color: #4285F4;
+}
+
+.auth-page__subButton_disabled {
+  color: rgba(255, 255, 255, 0.6);
+  opacity: 0.6;
+  cursor: default;
 }
 
 .auth-page__input {

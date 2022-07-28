@@ -32,13 +32,12 @@ function App() {
   const [isLoading, setIsLoading] = React.useState(false);
 
   const [loggedIn, setLoggedIn] = React.useState(false);
-  const [name, setName] = React.useState('');
 
   const [afterEditMessage, setAfterEditMessage] = React.useState("");
   const [isAfterEditError, setIsAfterEditError] = React.useState(false);
 
-  const [isErrorOnLogin, setIsErrorOnLogin] = React.useState(false);
-  const [isErrorOnRegister,setIsErrorOnRegister] = React.useState(false);
+  const [afterSubMessage, setAfterSubMessage] = React.useState('');
+  const [isAfterSubError, setIsAfterSubError] = React.useState(false)
 
   const navigate = useNavigate();
 
@@ -69,7 +68,6 @@ function App() {
       auth.getContent(jwt)
       .then((res) => {
         if(res){
-          /*setEmail(res.data.email)*/
           setLoggedIn(true)
           navigate('/movies');
         }
@@ -172,21 +170,17 @@ function App() {
   //функционал регистрации и авторизации
 
 	function handleLogin(formData) {
-		auth.authorize(formData.mail, formData.password)
+		auth.authorize(formData.email, formData.password)
 		.then((data) => {
 			localStorage.setItem('jwt', data.token);
 			setLoggedIn(true);
-			/*
-      Схожим образом организовать передачу имени пользователя на страничку ЛК
-      setEmail(formData.mail);*/
 			navigate('/movies');
+      setAfterSubMessage('')
 		})
 		.catch((err) => {
 			console.log('ОШИБКА: ', err);
-			/*
-      енто для попапа с сообщением об ошибке
-      setIsAccessSuccess(false);
-			setIsInfoToolPopupOpen(true)*/
+      setAfterSubMessage('При входе произошла ошибка, попробуйте снова.');
+      setIsAfterSubError(true);
 		})
 	}
 
@@ -310,6 +304,8 @@ function App() {
               element={
                 <Login
                   handleLogin={handleLogin}
+                  afterSubMessage={afterSubMessage}
+                  isAfterSubError={isAfterSubError}
                 />
               }
             />
