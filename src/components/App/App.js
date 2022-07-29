@@ -78,7 +78,7 @@ function App() {
     }
   }, [])
 
-  //неполная часть кода для отображения верного количества карточек, в зависимости от размера
+  //функциональность для отображения верного количества карточек, в зависимости от размера
   React.useEffect(() => {
     window.addEventListener("resize", updateWindowWidth);
 
@@ -89,7 +89,7 @@ function App() {
 
   React.useEffect(() => {
     setMoviesWindow();
-  });
+  }, [windowWidth]);
 
   function updateWindowWidth() {
     setWindowWidth(window.innerWidth);
@@ -111,25 +111,14 @@ function App() {
   function handleMoreMoviesClick() {
     setMoviesAtPage(moviesAtPage + addMovies);
   }
-  /*
-  React.useEffect(() => {
-    if(localStorage.getItem('jwt')){
-      const jwt = localStorage.getItem('jwt');
-      auth.getContent(jwt)
-      .then((res) => {
-        if(res){
-          setLoggedIn(true)
-          navigate('/movies');
-        }
-      })
-      .catch(error => {
-        console.log('ОШИБКА: ', error)
-      })
-    }
-  }, [])
-  */
 
-  //неполная поисковая система
+  function updStatesAndLocalStorage(data, finalMoviesList) {
+    localStorage.setItem('filteredMovies', JSON.stringify(finalMoviesList))
+    localStorage.setItem('checkBoxStatus', JSON.stringify(data.checkBoxState))
+    setFilteredMovies(finalMoviesList)
+  }
+
+  //неполная поисковая система и система фильтрации
   function handleSearchMovies(data) {
     setIsLoading(true)
 
@@ -141,22 +130,16 @@ function App() {
             JSON.parse(localStorage.getItem('allMovies')),
             data.research,
             data.checkBoxState
-          )
-          console.log(finalMoviesList) //убрать
-          localStorage.setItem('filteredMovies', JSON.stringify(finalMoviesList))
-          setFilteredMovies(finalMoviesList) //переделать
-          console.log(filteredMovies) //убрать и разобраться, почему после первого поиска filteredmovies пустой
+          );
+          updStatesAndLocalStorage(data, finalMoviesList);
         } else {
           localStorage.setItem('allMovies', JSON.stringify(result));
           const finalMoviesList = filterMovies(
             JSON.parse(localStorage.getItem('allMovies')),
             data.research,
             data.checkBoxState
-          )
-          console.log(finalMoviesList) //убрать
-          localStorage.setItem('filteredMovies', JSON.stringify(finalMoviesList))
-          setFilteredMovies(finalMoviesList) //переделать
-          console.log(filteredMovies) //убрать
+          );
+          updStatesAndLocalStorage(data, finalMoviesList);
         }
       })
       .catch(error => {
@@ -167,7 +150,23 @@ function App() {
       })
   }
 
-  //функционал регистрации и авторизации
+  function filterMovies(movies, research, checkBoxState) {
+    return (
+      movies.filter(movie => {
+        if (checkBoxState) {
+          return (
+            movie.duration <= 40 && movie.nameRU.toLowerCase().includes(research.toLowerCase())
+          );
+        } else {
+          return (
+            movie.nameRU.toLowerCase().includes(research.toLowerCase())
+          );
+        }
+      })
+    );
+  }
+
+  //функционал регистрации, авторизации и выхода
 
 	function handleLogin(formData) {
 		auth.authorize(formData.email, formData.password)
@@ -197,11 +196,10 @@ function App() {
 	}
 
 	function signOut() {
-		localStorage.removeItem('jwt');
+		localStorage.clear();
 		setLoggedIn(false);
 		setCurrentUser({});
-		/*setEmail('');
-		setCards([]);*/
+		//setCards([]);
 		navigate('/');
 	}
 
@@ -219,22 +217,6 @@ function App() {
         setIsAfterEditError(true);
         console.log(error);
       })
-  }
-
-  function filterMovies(movies, research, checkBoxState) {
-    return (
-      movies.filter(movie => {
-        if (checkBoxState) {
-          return (
-            movie.duration <= 40 && movie.nameRU.toLowerCase().includes(research.toLowerCase())
-          );
-        } else {
-          return (
-            movie.nameRU.toLowerCase().includes(research.toLowerCase())
-          );
-        }
-      })
-    );
   }
 
   return (
@@ -325,7 +307,6 @@ function App() {
               }
             />
 
-            {/*проверить*/}
             <Route
               path='/'
               element={loggedIn ? <Navigate to="/movies" /> : <Navigate to="/" />}

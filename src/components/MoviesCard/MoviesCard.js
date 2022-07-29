@@ -40,7 +40,7 @@ function MoviesCard(props) {
   return(
     <article className="card">
       <img
-        className="card__pic button"
+        className="card__pic buttons"
         src={props.poster}
         alt="Постер фильма"
         onClick={handleCardClick}

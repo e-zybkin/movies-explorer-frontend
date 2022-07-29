@@ -22,7 +22,7 @@ function Movies(props) {
         <MoreMovies
           moviesAtPage={props.moviesAtPage}
           addMovies={props.addMovies}
-          filteredMovies={props.filteredMovies}
+          filteredMovies={props.cards}
           handleMoreMoviesClick={props.handleMoreMoviesClick}
         />
       </main>

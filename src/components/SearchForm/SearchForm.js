@@ -5,17 +5,24 @@ import FilterCheckBox from '../FilterCheckBox/FilterCheckBox';
 function SearchForm(props) {
   const [research, setResearch] = React.useState('');
   const [isCheckBoxActiv, setIsCheckBoxActive] = React.useState(false);
+  const [isSearchErrorVisible, setIsSearchErrorVisible] = React.useState(false);
 
   function handleSearchChange(e) {
     setResearch(e.target.value)
+    setIsSearchErrorVisible(false);
   }
 
   function handleSubmit(e) {
     e.preventDefault();
-    props.onSearch({
-      research,
-      checkBoxState: isCheckBoxActiv,
-    })
+    if (research.length > 0) {
+      setIsSearchErrorVisible(false);
+      props.onSearch({
+        research,
+        checkBoxState: isCheckBoxActiv,
+      })
+    } else {
+      setIsSearchErrorVisible(true);
+    }
   }
 
   function handleCheckBoxClick () {
@@ -42,6 +49,7 @@ function SearchForm(props) {
               className='search__button buttons'
             >Найти</button>
           </div>
+          <p className={`search__error ${isSearchErrorVisible ? 'search__error_visible' : ''}`}>Нужно ввести ключевое слово</p>
           <FilterCheckBox
             handleCheckBoxClick={handleCheckBoxClick}
             isCheckBoxActive={isCheckBoxActiv}
