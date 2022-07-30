@@ -219,7 +219,6 @@ function App() {
     localStorage.setItem('filteredMovies', JSON.stringify(finalMoviesList))
     localStorage.setItem('checkBoxStatus', JSON.stringify(data.checkBoxState))
 
-    //после запроса нужно очищать нынешний filteredMovies
     if (finalMoviesList.length > 0) {
       setFilteredMovies(finalMoviesList)
     } else {

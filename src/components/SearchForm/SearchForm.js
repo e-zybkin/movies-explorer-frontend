@@ -69,6 +69,7 @@ function SearchForm(props) {
           <FilterCheckBox
             handleCheckBoxClick={handleCheckBoxClick}
             isCheckBoxActive={isCheckBoxActiv}
+            setIsCheckBoxActive={setIsCheckBoxActive}
           />
         </form>
       </div>
