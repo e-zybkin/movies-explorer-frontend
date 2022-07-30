@@ -6,6 +6,18 @@ import MoreMovies from "../MoreMovies/MoreMovies";
 import Footer from "../Footer/Footer";
 
 function Movies(props) {
+
+  React.useEffect(() => {
+    const filteredMovies = localStorage.getItem('filteredMovies');
+    if (filteredMovies) {
+      try {
+        props.setCards(JSON.parse(filteredMovies));
+      } catch (err) {
+        console.log(err)
+      }
+    }
+  }, [])
+
   return(
     <>
       <Header />
@@ -18,6 +30,8 @@ function Movies(props) {
           cards={props.cards}
           isLoading={props.isLoading}
           moviesAtPage={props.moviesAtPage}
+          isMoviesNotFound={props.isMoviesNotFound}
+          isMoviesApiErrorShown={props.isMoviesApiErrorShown}
         />
         <MoreMovies
           moviesAtPage={props.moviesAtPage}

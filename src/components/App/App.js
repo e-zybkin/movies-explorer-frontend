@@ -39,7 +39,37 @@ function App() {
   const [afterSubMessage, setAfterSubMessage] = React.useState('');
   const [isAfterSubError, setIsAfterSubError] = React.useState(false)
 
+  const [isMoviesNotFound, setIsMoviesNotFound] = React.useState(false);
+  const [isMoviesApiErrorShown, setIsMoviesApiErrorShown] = React.useState(false);
+
   const navigate = useNavigate();
+
+  /*const fetchMovies = () => {
+    moviesApi.getMovies()
+      .then(result => {
+        localStorage.setItem('allMovies', JSON.stringify(result));
+        setMovies(result);
+      })
+      .catch(error => {
+        console.log('ОШИБКА: ', error);
+        setIsMoviesApiErrorShown(true);
+      })
+  };
+
+  React.useEffect(() => {
+    const localMovies = localStorage.getItem('allMovies');
+    if (localMovies) {
+      try {
+        setMovies(JSON.parse(localMovies));
+      } catch (err) {
+        localStorage.removeItem('allMovies');
+        fetchMovies();
+      }
+    } else {
+      console.log('шаг 2')
+      fetchMovies();
+    }
+  }, [])*/
 
   //useEffect'ы для получения пользовательских данных и проверки наличия токена
   React.useEffect(() => {
@@ -112,19 +142,37 @@ function App() {
     setMoviesAtPage(moviesAtPage + addMovies);
   }
 
-  function updStatesAndLocalStorage(data, finalMoviesList) {
-    localStorage.setItem('filteredMovies', JSON.stringify(finalMoviesList))
-    localStorage.setItem('checkBoxStatus', JSON.stringify(data.checkBoxState))
-    setFilteredMovies(finalMoviesList)
-  }
-
-  //неполная поисковая система и система фильтрации
-  function handleSearchMovies(data) {
+  //поисковая система и система фильтрации
+  /*function handleSearchMovies(data) {
+    setMoviesWindow();
+    setFilteredMovies([])
     setIsLoading(true)
+    setIsMoviesApiErrorShown(false)
+    setIsMoviesNotFound(false)
+    localStorage.setItem('research', data.research)
+    try {
+      const finalMoviesList = filterMovies(
+        JSON.parse(localStorage.getItem('allMovies')),
+        data.research,
+        data.checkBoxState
+      );
+      updStatesAndLocalStorage(data, finalMoviesList);
+      setIsLoading(false)
+    } catch {
+      setIsMoviesApiErrorShown(true);
+      setIsLoading(false)
+    }
+  }*/
 
+  function handleSearchMovies(data) {
+    setMoviesWindow();
+    setFilteredMovies([])
+    setIsLoading(true)
+    setIsMoviesApiErrorShown(false)
+    setIsMoviesNotFound(false)
     moviesApi.getMovies()
       .then(result => {
-        localStorage.setItem('research', data.research)
+        localStorage.setItem('researchAllMovies', JSON.stringify(data.research))
         if (localStorage.getItem('allMovies')) {
           const finalMoviesList = filterMovies(
             JSON.parse(localStorage.getItem('allMovies')),
@@ -144,6 +192,7 @@ function App() {
       })
       .catch(error => {
         console.log('ОШИБКА: ', error);
+        setIsMoviesApiErrorShown(true);
       })
       .finally(() => {
         setIsLoading(false)
@@ -164,6 +213,19 @@ function App() {
         }
       })
     );
+  }
+
+  function updStatesAndLocalStorage(data, finalMoviesList) {
+    localStorage.setItem('filteredMovies', JSON.stringify(finalMoviesList))
+    localStorage.setItem('checkBoxStatus', JSON.stringify(data.checkBoxState))
+
+    //после запроса нужно очищать нынешний filteredMovies
+    if (finalMoviesList.length > 0) {
+      setFilteredMovies(finalMoviesList)
+    } else {
+      setIsMoviesNotFound(true)
+      setFilteredMovies(finalMoviesList)
+    }
   }
 
   //функционал регистрации, авторизации и выхода
@@ -199,7 +261,6 @@ function App() {
 		localStorage.clear();
 		setLoggedIn(false);
 		setCurrentUser({});
-		//setCards([]);
 		navigate('/');
 	}
 
@@ -238,12 +299,15 @@ function App() {
                 <ProtectedRoute loggedIn={loggedIn}>
                   <Movies
                     cards={filteredMovies}
+                    setCards={setFilteredMovies}
                     onSearch={handleSearchMovies}
                     isLoading={isLoading}
                     filterMovies={filterMovies}
                     moviesAtPage={moviesAtPage}
                     addMovies={addMovies}
                     handleMoreMoviesClick={handleMoreMoviesClick}
+                    isMoviesNotFound={isMoviesNotFound}
+                    isMoviesApiErrorShown={isMoviesApiErrorShown}
                   />
                 </ProtectedRoute>
               }

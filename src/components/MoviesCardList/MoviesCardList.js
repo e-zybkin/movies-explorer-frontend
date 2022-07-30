@@ -9,8 +9,17 @@ function MoviesCardList(props) {
 
   return(
     <>
-      {props.isLoading && (<Preloader />)}
       <section className={`cards-grid section ${location.pathname === '/saved-movies' ? 'cards-grid_type_saved' : ''}`}>
+        {props.isLoading && (<Preloader />)}
+        {props.isMoviesNotFound && (<p className='movies__not-found'>Ничего не найдено</p>)}
+        {props.isMoviesApiErrorShown && (
+          <p className='movies__api-error'>
+            Во время запроса произошла ошибка.
+            Возможно, проблема с соединением или сервер недоступен.
+            Подождите немного и попробуйте ещё раз
+          </p>
+        )}
+
         {props.cards.slice(0, props.moviesAtPage).map((card) => (
           <MoviesCard
             key={card.id}
