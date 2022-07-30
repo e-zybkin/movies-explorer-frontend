@@ -23,10 +23,12 @@ function MoviesCardList(props) {
         {props.cards.slice(0, props.moviesAtPage).map((card) => (
           <MoviesCard
             key={card.id}
+            card={card}
             poster={`https://api.nomoreparties.co${card.image.url}`}
             name={card.nameRU}
             time={card.duration}
             link={card.trailerLink}
+            onCardLike={props.onCardLike}
           />
         ))}
       </section>

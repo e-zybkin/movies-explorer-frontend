@@ -279,6 +279,21 @@ function App() {
       })
   }
 
+  //функционал лайков
+
+  function handleLikeCard (country, director, duration, year, description, image,
+    trailerLink,thumbnail, movieId, nameRU, nameEN) {
+
+    mainApi.saveMovie(country, director, duration, year, description,
+      image, trailerLink, thumbnail, movieId, nameRU, nameEN)
+      .then((result) => {
+        console.log(result)
+      })
+      .catch(error => {
+        console.log('ОШИБКА: ', error);
+      })
+  }
+
   return (
     <div className="page">
       <div className="wrapper">
@@ -307,6 +322,7 @@ function App() {
                     handleMoreMoviesClick={handleMoreMoviesClick}
                     isMoviesNotFound={isMoviesNotFound}
                     isMoviesApiErrorShown={isMoviesApiErrorShown}
+                    onCardLike={handleLikeCard}
                   />
                 </ProtectedRoute>
               }

@@ -32,6 +32,7 @@ function Movies(props) {
           moviesAtPage={props.moviesAtPage}
           isMoviesNotFound={props.isMoviesNotFound}
           isMoviesApiErrorShown={props.isMoviesApiErrorShown}
+          onCardLike={props.onCardLike}
         />
         <MoreMovies
           moviesAtPage={props.moviesAtPage}

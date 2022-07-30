@@ -47,7 +47,8 @@ class MainApi {
     .then(result => this._getResponseData(result))
   }
 
-  saveMovie(data) {
+  saveMovie(country, director, duration, year, description, image, trailerLink,
+    thumbnail, movieId, nameRU, nameEN) {
     return fetch(`${this.address}/movies`, {
       method: 'POST',
       headers: {
@@ -55,17 +56,17 @@ class MainApi {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        country: data.country,
-        director: data.director,
-        duration: data.duration,
-        year: data.year,
-        description: data.description,
-        image: data.image,
-        trailer: data.trailer,
-        nameRU: data.nameRU,
-        nameEN: data.nameEN,
-        thumbnail: data.thumbnail,
-        movieId: data.movieId,
+        country: country,
+        director: director,
+        duration: duration,
+        year: year,
+        description: description,
+        image: image,
+        trailerLink: trailerLink,
+        thumbnail: thumbnail,
+        movieId: movieId,
+        nameRU: nameRU,
+        nameEN: nameEN
       })
     })
     .then(result => this._getResponseData(result))
