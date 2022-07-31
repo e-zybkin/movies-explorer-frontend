@@ -8,10 +8,6 @@
   row-gap: 37px;
 }
 
-.cards-grid_type_saved{
-  padding-bottom: 247px;
-}
-
 .movies__not-found,
 .movies__api-error {
   text-align: center;
@@ -27,10 +23,6 @@
     row-gap: 30px;
     padding-bottom: 30px;
   }
-
-  .cards-grid_type_saved {
-    padding-bottom: 170px;
-  }
 }
 
 @media screen and (max-width: 767px) {
@@ -39,9 +31,5 @@
     padding-bottom: 26px;
     grid-template-columns: 300px;
     row-gap: 14px;
-  }
-
-  .cards-grid_type_saved {
-    padding-bottom: 166px;
   }
 }

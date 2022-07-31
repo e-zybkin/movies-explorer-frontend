@@ -1,4 +1,4 @@
-export const BASE_URL = 'http://localhost:3001' //'https://api.my-movies.nomoredomains.work'
+export const BASE_URL = 'https://api.my-movies.nomoredomains.work' //'http://localhost:3001'
 
 const HEADERS = {
   'Content-Type': 'application/json'

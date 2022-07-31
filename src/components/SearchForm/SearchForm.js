@@ -32,8 +32,8 @@ function SearchForm(props) {
     if (research.length > 0) {
       setIsSearchErrorVisible(false);
       props.onSearch({
-        research,
-        checkBoxState: isCheckBoxActiv,
+      research,
+      checkBoxState: isCheckBoxActiv,
       })
     } else {
       setIsSearchErrorVisible(true);

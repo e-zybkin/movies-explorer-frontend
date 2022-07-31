@@ -7,7 +7,7 @@ import Profile from '../Profile/Profile';
 import Register from '../Register/Register';
 import Login from '../Login/Login';
 import PageNotFound from '../PageNotFound/PageNotFound';
-import { Route, Routes, Navigate, useNavigate } from 'react-router-dom';
+import { Route, Routes, Navigate, useNavigate, useLocation } from 'react-router-dom';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import mainApi from '../../utils/MainApi';
 import moviesApi from '../../utils/MoviesApi';
@@ -19,11 +19,12 @@ import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'
 function App() {
   document.documentElement.lang = 'ru'
 
+  const location = useLocation();
+
   const [currentUser, setCurrentUser] = React.useState({});
 
-  const [movies, setMovies] = React.useState([]);
   const [savedMovies, setSavedMovies] = React.useState([]);
-  const [filteredMovies, setFilteredMovies] = React.useState([])
+  const [filteredMovies, setFilteredMovies] = React.useState([]);
 
   const [windowWidth, setWindowWidth] = React.useState(window.innerWidth);
   const [moviesAtPage, setMoviesAtPage] = React.useState(12);
@@ -42,34 +43,18 @@ function App() {
   const [isMoviesNotFound, setIsMoviesNotFound] = React.useState(false);
   const [isMoviesApiErrorShown, setIsMoviesApiErrorShown] = React.useState(false);
 
+  const [isSavedMoviesNotFound, setIsSavedMoviesNotFound] = React.useState(false);
+  const [isMainApiErrorShown, setIsMainApiErrorShown] = React.useState(false);
+
   const navigate = useNavigate();
 
-  /*const fetchMovies = () => {
-    moviesApi.getMovies()
-      .then(result => {
-        localStorage.setItem('allMovies', JSON.stringify(result));
-        setMovies(result);
-      })
-      .catch(error => {
-        console.log('ОШИБКА: ', error);
-        setIsMoviesApiErrorShown(true);
-      })
-  };
-
+  /*Эффект для задания базового для
+    определённой ширины экрана кол-ва карточек
+    при переходе со страницы movies на saved-movies
+  */
   React.useEffect(() => {
-    const localMovies = localStorage.getItem('allMovies');
-    if (localMovies) {
-      try {
-        setMovies(JSON.parse(localMovies));
-      } catch (err) {
-        localStorage.removeItem('allMovies');
-        fetchMovies();
-      }
-    } else {
-      console.log('шаг 2')
-      fetchMovies();
-    }
-  }, [])*/
+    setMoviesWindow();
+  }, [location.pathname])
 
   //useEffect'ы для получения пользовательских данных и проверки наличия токена
   React.useEffect(() => {
@@ -136,26 +121,6 @@ function App() {
   }
 
   //поисковая система и система фильтрации
-  /*function handleSearchMovies(data) {
-    setMoviesWindow();
-    setFilteredMovies([])
-    setIsLoading(true)
-    setIsMoviesApiErrorShown(false)
-    setIsMoviesNotFound(false)
-    localStorage.setItem('research', data.research)
-    try {
-      const finalMoviesList = filterMovies(
-        JSON.parse(localStorage.getItem('allMovies')),
-        data.research,
-        data.checkBoxState
-      );
-      updStatesAndLocalStorage(data, finalMoviesList);
-      setIsLoading(false)
-    } catch {
-      setIsMoviesApiErrorShown(true);
-      setIsLoading(false)
-    }
-  }*/
 
   function handleSearchMovies(data) {
     setMoviesWindow();
@@ -164,33 +129,59 @@ function App() {
     setIsMoviesApiErrorShown(false)
     setIsMoviesNotFound(false)
     getAllSavedMovies();
-    moviesApi.getMovies()
-      .then(result => {
-        localStorage.setItem('researchAllMovies', JSON.stringify(data.research))
-        if (localStorage.getItem('allMovies')) {
-          const finalMoviesList = filterMovies(
-            JSON.parse(localStorage.getItem('allMovies')),
-            data.research,
-            data.checkBoxState
-          );
-          updStatesAndLocalStorage(data, finalMoviesList);
-        } else {
-          localStorage.setItem('allMovies', JSON.stringify(result));
-          const finalMoviesList = filterMovies(
-            JSON.parse(localStorage.getItem('allMovies')),
-            data.research,
-            data.checkBoxState
-          );
-          updStatesAndLocalStorage(data, finalMoviesList);
-        }
-      })
-      .catch(error => {
-        console.log('ОШИБКА: ', error);
-        setIsMoviesApiErrorShown(true);
-      })
-      .finally(() => {
-        setIsLoading(false)
-      })
+      moviesApi.getMovies()
+        .then(result => {
+          localStorage.setItem('researchAllMovies', JSON.stringify(data.research))
+          if (localStorage.getItem('allMovies')) {
+            const finalMoviesList = filterMovies(
+              JSON.parse(localStorage.getItem('allMovies')),
+              data.research,
+              data.checkBoxState
+            );
+            updStatesAndLocalStorage(data, finalMoviesList);
+          } else {
+            localStorage.setItem('allMovies', JSON.stringify(result));
+            const finalMoviesList = filterMovies(
+              JSON.parse(localStorage.getItem('allMovies')),
+              data.research,
+              data.checkBoxState
+            );
+            updStatesAndLocalStorage(data, finalMoviesList);
+          }
+        })
+        .catch(error => {
+          console.log('ОШИБКА: ', error);
+          setIsMoviesApiErrorShown(true);
+        })
+        .finally(() => {
+          setIsLoading(false)
+        })
+  }
+
+  function handleSearchSavedMovies(data) {
+    setMoviesWindow();
+    setFilteredMovies([])
+    setIsLoading(true)
+    setIsMainApiErrorShown(false)
+    setIsSavedMoviesNotFound(false)
+    if(JSON.parse(localStorage.getItem('savedMovies')).length > 0) {
+      const finalSavedMovieList = filterMovies(
+        JSON.parse(localStorage.getItem('savedMovies')),
+        data.research,
+        data.checkBoxState
+      )
+      localStorage.setItem('savedFilteredMovies', JSON.stringify(finalSavedMovieList))
+      if (finalSavedMovieList.length > 0) {
+        setSavedMovies(finalSavedMovieList)
+      } else {
+        setIsSavedMoviesNotFound(true)
+        setSavedMovies(finalSavedMovieList)
+      }
+      setIsLoading(false)
+    } else {
+      setIsSavedMoviesNotFound(true)
+      setIsLoading(false)
+    }
   }
 
   function getAllSavedMovies () {
@@ -200,7 +191,8 @@ function App() {
         localStorage.setItem('savedMovies', JSON.stringify(result.data))
       })
       .catch(error => {
-        console.log('ОШИБКА: ', error) //стоит добавить ошибку
+        console.log('ОШИБКА: ', error)
+        setIsMainApiErrorShown(true);
       })
   }
 
@@ -343,6 +335,7 @@ function App() {
                     onCardLike={handleLikeCard}
                     onDeleteButton={handleDeleteButtonClick}
                     getAllSavedMovies={getAllSavedMovies}
+                    setIsMoviesNotFound={setIsMoviesNotFound}
                   />
                 </ProtectedRoute>
               }
@@ -354,9 +347,16 @@ function App() {
                 <ProtectedRoute loggedIn={loggedIn}>
                   <SavedMovies
                     cards={savedMovies}
-                    onSearch={''}
+                    onSearch={handleSearchSavedMovies}
                     getAllSavedMovies={getAllSavedMovies}
                     onDeleteButton={handleDeleteButtonClick}
+                    isLoading={isLoading}
+                    moviesAtPage={moviesAtPage}
+                    addMovies={addMovies}
+                    handleMoreMoviesClick={handleMoreMoviesClick}
+                    isMoviesNotFound={isSavedMoviesNotFound}
+                    isMoviesApiErrorShown={isMainApiErrorShown}
+                    setIsMoviesNotFound={setIsSavedMoviesNotFound}
                   />
                 </ProtectedRoute>
               }

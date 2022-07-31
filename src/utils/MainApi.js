@@ -84,9 +84,9 @@ class MainApi {
 }
 
 const mainApi = new MainApi({
-  address: 'http://localhost:3001'
+  address:'https://api.my-movies.nomoredomains.work'
 })
 
 export default mainApi;
 
-/*address: 'https://api.my-movies.nomoredomains.work'*/
+/*address: 'http://localhost:3001'*/
