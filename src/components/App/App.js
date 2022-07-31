@@ -196,7 +196,6 @@ function App() {
   function getAllSavedMovies () {
     mainApi.getSavedMovies()
       .then(result => {
-        console.log(result.data)
         setSavedMovies(result.data)
         localStorage.setItem('savedMovies', JSON.stringify(result.data))
       })
@@ -294,7 +293,6 @@ function App() {
     mainApi.saveMovie(country, director, duration, year, description,
       image, trailerLink, thumbnail, movieId, nameRU, nameEN)
       .then((result) => {
-        console.log(result.data)
         setSavedMovies([...savedMovies, result.data])
         localStorage.setItem('savedMovies', JSON.stringify([...savedMovies, result.data]));
       })
@@ -304,12 +302,10 @@ function App() {
   }
 
   function handleDeleteButtonClick (data) {
-    console.log(data)
     mainApi.deleteMovie(data)
     .then((result) => {
-      console.log(result)
       setSavedMovies(savedMovies.filter((movie) => !(movie._id === result.data._id)));
-      localStorage.setItem('savedMovies', JSON.stringify(savedMovies.filter((movie) => !(movie._id === result._id))));
+      localStorage.setItem('savedMovies', JSON.stringify(savedMovies.filter((movie) => !(movie._id === result.data._id))));
     })
     .catch(error => {
       console.log('ОШИБКА: ', error);
@@ -346,6 +342,7 @@ function App() {
                     isMoviesApiErrorShown={isMoviesApiErrorShown}
                     onCardLike={handleLikeCard}
                     onDeleteButton={handleDeleteButtonClick}
+                    getAllSavedMovies={getAllSavedMovies}
                   />
                 </ProtectedRoute>
               }
@@ -356,9 +353,10 @@ function App() {
               element={
                 <ProtectedRoute loggedIn={loggedIn}>
                   <SavedMovies
-                    cards={[]}
+                    cards={savedMovies}
                     onSearch={''}
                     getAllSavedMovies={getAllSavedMovies}
+                    onDeleteButton={handleDeleteButtonClick}
                   />
                 </ProtectedRoute>
               }

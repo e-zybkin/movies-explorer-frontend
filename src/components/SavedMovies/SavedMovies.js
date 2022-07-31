@@ -16,6 +16,7 @@ function SavedMovies(props) {
         <SearchForm />
         <MoviesCardList
           cards={props.cards}
+          onDeleteButton={props.onDeleteButton}
         />
       </main>
       <Footer />

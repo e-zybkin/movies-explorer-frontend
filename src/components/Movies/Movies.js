@@ -8,6 +8,7 @@ import Footer from "../Footer/Footer";
 function Movies(props) {
 
   React.useEffect(() => {
+    props.getAllSavedMovies();
     const filteredMovies = localStorage.getItem('filteredMovies');
     if (filteredMovies) {
       try {

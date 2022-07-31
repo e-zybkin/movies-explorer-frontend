@@ -22,9 +22,9 @@ function MoviesCardList(props) {
 
         {props.cards.slice(0, props.moviesAtPage).map((card) => (
           <MoviesCard
-            key={card.id}
+            key={location.pathname === '/movies' ? card.id : card.movieId}
             card={card}
-            poster={`https://api.nomoreparties.co${card.image.url}`}
+            poster={location.pathname === '/movies' ? `https://api.nomoreparties.co${card.image.url}` : card.image}
             name={card.nameRU}
             time={card.duration}
             link={card.trailerLink}
