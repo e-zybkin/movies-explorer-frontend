@@ -5,6 +5,10 @@ import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import Footer from "../Footer/Footer";
 
 function SavedMovies(props) {
+  React.useEffect(() => {
+    props.getAllSavedMovies();
+  }, []);
+
   return(
     <>
       <Header />

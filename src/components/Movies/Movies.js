@@ -33,6 +33,7 @@ function Movies(props) {
           isMoviesNotFound={props.isMoviesNotFound}
           isMoviesApiErrorShown={props.isMoviesApiErrorShown}
           onCardLike={props.onCardLike}
+          onDeleteButton={props.onDeleteButton}
         />
         <MoreMovies
           moviesAtPage={props.moviesAtPage}

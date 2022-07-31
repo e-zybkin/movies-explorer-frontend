@@ -29,6 +29,7 @@ function MoviesCardList(props) {
             time={card.duration}
             link={card.trailerLink}
             onCardLike={props.onCardLike}
+            onDeleteButton={props.onDeleteButton}
           />
         ))}
       </section>

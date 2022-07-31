@@ -83,13 +83,6 @@ function App() {
       .catch(error => {
         console.log('ОШИБКА: ', error)
       })
-	  mainApi.getSavedMovies()
-      .then(result => {
-        setSavedMovies(result.data)
-      })
-      .catch(error => {
-        console.log('ОШИБКА: ', error)
-      })
   }, [loggedIn])
 
   React.useEffect(() => {
@@ -170,6 +163,7 @@ function App() {
     setIsLoading(true)
     setIsMoviesApiErrorShown(false)
     setIsMoviesNotFound(false)
+    getAllSavedMovies();
     moviesApi.getMovies()
       .then(result => {
         localStorage.setItem('researchAllMovies', JSON.stringify(data.research))
@@ -196,6 +190,18 @@ function App() {
       })
       .finally(() => {
         setIsLoading(false)
+      })
+  }
+
+  function getAllSavedMovies () {
+    mainApi.getSavedMovies()
+      .then(result => {
+        console.log(result.data)
+        setSavedMovies(result.data)
+        localStorage.setItem('savedMovies', JSON.stringify(result.data))
+      })
+      .catch(error => {
+        console.log('ОШИБКА: ', error) //стоит добавить ошибку
       })
   }
 
@@ -260,6 +266,7 @@ function App() {
 		localStorage.clear();
 		setLoggedIn(false);
 		setCurrentUser({});
+    setFilteredMovies([]);
 		navigate('/');
 	}
 
@@ -287,11 +294,26 @@ function App() {
     mainApi.saveMovie(country, director, duration, year, description,
       image, trailerLink, thumbnail, movieId, nameRU, nameEN)
       .then((result) => {
-        console.log(result)
+        console.log(result.data)
+        setSavedMovies([...savedMovies, result.data])
+        localStorage.setItem('savedMovies', JSON.stringify([...savedMovies, result.data]));
       })
       .catch(error => {
         console.log('ОШИБКА: ', error);
       })
+  }
+
+  function handleDeleteButtonClick (data) {
+    console.log(data)
+    mainApi.deleteMovie(data)
+    .then((result) => {
+      console.log(result)
+      setSavedMovies(savedMovies.filter((movie) => !(movie._id === result.data._id)));
+      localStorage.setItem('savedMovies', JSON.stringify(savedMovies.filter((movie) => !(movie._id === result._id))));
+    })
+    .catch(error => {
+      console.log('ОШИБКА: ', error);
+    })
   }
 
   return (
@@ -323,6 +345,7 @@ function App() {
                     isMoviesNotFound={isMoviesNotFound}
                     isMoviesApiErrorShown={isMoviesApiErrorShown}
                     onCardLike={handleLikeCard}
+                    onDeleteButton={handleDeleteButtonClick}
                   />
                 </ProtectedRoute>
               }
@@ -335,6 +358,7 @@ function App() {
                   <SavedMovies
                     cards={[]}
                     onSearch={''}
+                    getAllSavedMovies={getAllSavedMovies}
                   />
                 </ProtectedRoute>
               }

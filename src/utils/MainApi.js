@@ -73,6 +73,7 @@ class MainApi {
   }
 
   deleteMovie(data) {
+    console.log(data._id)
     return fetch(`${this.address}/movies/${data._id}`, {
       method: 'DELETE',
       headers: {
