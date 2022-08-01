@@ -7,12 +7,16 @@ import Footer from "../Footer/Footer";
 
 function SavedMovies(props) {
   React.useEffect(() => {
-    props.getAllSavedMovies();
     if(props.cards.length > 0) {
       props.setIsMoviesNotFound(false)
     }
+  })
+
+  React.useEffect(() => {
+    props.getAllSavedMovies();
   }, []);
 
+  //почему то приходит пустой массив карточек !!!!!!
   React.useEffect(() => {
     if(props.cards.length === 0) {
       props.setIsMoviesNotFound(true)
@@ -21,7 +25,9 @@ function SavedMovies(props) {
 
   return(
     <>
-      <Header />
+      <Header
+        loggedIn={props.loggedIn}
+      />
       <main>
         <SearchForm
           onSearch={props.onSearch}

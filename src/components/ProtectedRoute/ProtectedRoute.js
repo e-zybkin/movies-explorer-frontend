@@ -1,12 +1,14 @@
 import React from "react";
 import { Navigate } from "react-router-dom";
 
-function ProtectedRoute({ children, loggedIn}) {
-  if (loggedIn) {
-    return children;
-  }else{
-    return <Navigate to="/" />
+function ProtectedRoute({children}) {
+  if (!localStorage.getItem('jwt')) {
+    return (
+      <Navigate to="/" />
+    );
   }
+
+  return children;
 }
 
 export default ProtectedRoute;

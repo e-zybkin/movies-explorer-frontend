@@ -10,21 +10,20 @@ function Movies(props) {
   React.useEffect(() => {
     props.getAllSavedMovies();
     const filteredMovies = localStorage.getItem('filteredMovies');
-    if (filteredMovies && JSON.parse(filteredMovies).length > 0) {
+    if (filteredMovies) {
       try {
-        props.setIsMoviesNotFound(false);
         props.setCards(JSON.parse(filteredMovies));
       } catch (err) {
         console.log(err)
       }
-    } else {
-      props.setIsMoviesNotFound(true)
     }
   }, [])
 
   return(
     <>
-      <Header />
+      <Header
+        loggedIn={props.loggedIn}
+      />
       <main>
         <SearchForm
           onSearch={props.onSearch}

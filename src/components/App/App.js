@@ -77,7 +77,6 @@ function App() {
       .then((res) => {
         if(res){
           setLoggedIn(true)
-          navigate('/movies');
         }
       })
       .catch(error => {
@@ -313,7 +312,9 @@ function App() {
             <Route
               path='/'
               element={
-                <Main />
+                <Main
+                  loggedIn={loggedIn}
+                />
               }
             />
 
@@ -335,7 +336,7 @@ function App() {
                     onCardLike={handleLikeCard}
                     onDeleteButton={handleDeleteButtonClick}
                     getAllSavedMovies={getAllSavedMovies}
-                    setIsMoviesNotFound={setIsMoviesNotFound}
+                    loggedIn={loggedIn}
                   />
                 </ProtectedRoute>
               }
@@ -357,6 +358,7 @@ function App() {
                     isMoviesNotFound={isSavedMoviesNotFound}
                     isMoviesApiErrorShown={isMainApiErrorShown}
                     setIsMoviesNotFound={setIsSavedMoviesNotFound}
+                    loggedIn={loggedIn}
                   />
                 </ProtectedRoute>
               }
@@ -380,6 +382,7 @@ function App() {
             <Route
               path='/signin'
               element={
+                loggedIn ? <Navigate to="/movies" /> :
                 <Login
                   handleLogin={handleLogin}
                   afterSubMessage={afterSubMessage}
@@ -392,6 +395,7 @@ function App() {
             <Route
               path='/signup'
               element={
+                loggedIn ? <Navigate to="/movies" /> :
                 <Register
                   handleRegister={handleRegister}
                   afterSubMessage={afterSubMessage}
@@ -406,11 +410,6 @@ function App() {
               element={
                 <PageNotFound />
               }
-            />
-
-            <Route
-              path='/'
-              element={loggedIn ? <Navigate to="/movies" /> : <Navigate to="/" />}
             />
           </Routes>
         </CurrentUserContext.Provider>
