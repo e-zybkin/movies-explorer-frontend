@@ -46,6 +46,7 @@ function Header(props) {
         </header>
       );
     } else {
+      console.log(props.loggedIn)
       return(
         <header className="header header_type_main section">
           <img

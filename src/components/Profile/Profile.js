@@ -77,6 +77,7 @@ function Profile(props) {
     <>
       <Header
         setAfterEditMessage={props.setAfterEditMessage}
+        loggedIn={props.loggedIn}
       />
       <main>
         <section className="profile">

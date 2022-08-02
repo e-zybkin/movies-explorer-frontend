@@ -374,6 +374,7 @@ function App() {
                     isAfterEditError={isAfterEditError}
                     afterEditMessage={afterEditMessage}
                     setAfterEditMessage={setAfterEditMessage}
+                    loggedIn={loggedIn}
                   />
                 </ProtectedRoute>
               }
