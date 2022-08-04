@@ -6,15 +6,44 @@ import MoreMovies from "../MoreMovies/MoreMovies";
 import Footer from "../Footer/Footer";
 
 function Movies(props) {
+
+  React.useEffect(() => {
+    props.getAllSavedMovies();
+    const filteredMovies = localStorage.getItem('filteredMovies');
+    if (filteredMovies) {
+      try {
+        props.setCards(JSON.parse(filteredMovies));
+      } catch (err) {
+        console.log(err)
+      }
+    }
+  }, [])
+
   return(
     <>
-      <Header />
+      <Header
+        loggedIn={props.loggedIn}
+      />
       <main>
-        <SearchForm />
+        <SearchForm
+          onSearch={props.onSearch}
+          filterMovies={props.filterMovies}
+        />
         <MoviesCardList
           cards={props.cards}
+          isLoading={props.isLoading}
+          moviesAtPage={props.moviesAtPage}
+          isMoviesNotFound={props.isMoviesNotFound}
+          isMoviesApiErrorShown={props.isMoviesApiErrorShown}
+          onCardLike={props.onCardLike}
+          onDeleteButton={props.onDeleteButton}
         />
-        <MoreMovies />
+        <MoreMovies
+          moviesAtPage={props.moviesAtPage}
+          addMovies={props.addMovies}
+          filteredMovies={props.cards}
+          handleMoreMoviesClick={props.handleMoreMoviesClick}
+        />
       </main>
       <Footer />
     </>

@@ -19,51 +19,53 @@ function Header(props) {
 
   function handleBurgerClick() {
     setIsNavTabOpen(!isNavTabOpen)
+    if(location.pathname === '/profile') {
+      props.setAfterEditMessage('')
+    }
   }
 
   function handleHeaderLink() {
-    switch (location.pathname) {
-      case '/':
-        return(
-          <header className="header header_type_main section">
+    if(props.loggedIn) {
+      return(
+        <header className={`header ${location.pathname === '/' ? 'header_type_main' : 'header_type_other'} section`}>
+          <Link
+            to="/"
+            className="header__logo-button buttons"
+          >
             <img
               className="header__logo"
               src={logo}
               alt="Логотип movies-explorer"
             />
-            <div className="header__auth-box">
-              <Link
-                to="/signup"
-                className="header__reg buttons"
-              >Регистрация</Link>
-              <Link
-                to="/signin"
-                className="header__auth buttons"
-              >Войти</Link>
-            </div>
-          </header>
-        );
+          </Link>
 
-      default:
-        return(
-          <header className="header header_type_other section">
+          <Burger
+            isOpen={isNavTabOpen}
+            onBurgerClick={handleBurgerClick}
+          />
+        </header>
+      );
+    } else {
+      console.log(props.loggedIn)
+      return(
+        <header className="header header_type_main section">
+          <img
+            className="header__logo"
+            src={logo}
+            alt="Логотип movies-explorer"
+          />
+          <div className="header__auth-box">
             <Link
-              to="/"
-              className="header__logo-button buttons"
-            >
-              <img
-                className="header__logo"
-                src={logo}
-                alt="Логотип movies-explorer"
-              />
-            </Link>
-
-            <Burger
-              isOpen={isNavTabOpen}
-              onBurgerClick={handleBurgerClick}
-            />
-          </header>
-        );
+              to="/signup"
+              className="header__reg buttons"
+            >Регистрация</Link>
+            <Link
+              to="/signin"
+              className="header__auth buttons"
+            >Войти</Link>
+          </div>
+        </header>
+      );
     }
   }
 

@@ -8,20 +8,20 @@
   row-gap: 37px;
 }
 
-.cards-grid_type_saved{
-  padding-bottom: 247px;
+.movies__not-found,
+.movies__api-error {
+  text-align: center;
+  margin-bottom: 0;
+  margin-top: 50px;
+  width: 100%;
 }
 
 @media screen and (max-width: 1023px) {
   .cards-grid {
-    grid-template-columns: repeat(2, 339px);
+    grid-template-columns: repeat(auto-fit, 339px);
     column-gap: 30px;
     row-gap: 30px;
     padding-bottom: 30px;
-  }
-
-  .cards-grid_type_saved {
-    padding-bottom: 170px;
   }
 }
 
@@ -31,9 +31,5 @@
     padding-bottom: 26px;
     grid-template-columns: 300px;
     row-gap: 14px;
-  }
-
-  .cards-grid_type_saved {
-    padding-bottom: 166px;
   }
 }

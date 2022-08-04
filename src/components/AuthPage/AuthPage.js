@@ -47,10 +47,16 @@ function AuthPage(props) {
         name={props.name}
         onSubmit={props.onSubmit}>
         {props.children}
-        <button
-          type="submit"
-          className="auth-page__subButton buttons"
-        >{props.submitText}</button>
+        <div className="auth-page__sub-box">
+          <span className={`auth-page__after-sub ${props.isAfterSubError ? "auth-page__after-sub_error" : ""} ${props.afterSubMessage ? "auth-page__after-sub_message" : ""}`}>
+            {props.afterSubMessage}
+          </span>
+          <button
+            type="submit"
+            className={`auth-page__subButton buttons ${props.isButtonDisabled ? 'auth-page__subButton_disabled' : ''}`}
+            disabled={props.isButtonDisabled}
+          >{props.submitText}</button>
+        </div>
       </form>
       {handleAuthButton()}
     </section>
