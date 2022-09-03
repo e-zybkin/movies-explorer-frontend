@@ -1,5 +1,23 @@
-# movies-explorer-frontend
+<h1 align="center">Фронтенд проекта "Movies explorer"</h1>
 
-Ссылка - https://my-movies.nomoredomains.work/
+В этом репозитории хранится фронтенд часть проектной работы, которая представляет из себя простой, но функциональный киносервис, написанный в сотрудничестве с базой кинофильмов BeatFilm.  
 
-Макет - https://www.figma.com/file/5DjIz22HAylygBd2VY2wfd/MyDiploma?node-id=891%3A3857
+`Бэкенд` проекта находится [здесь](https://github.com/e-zybkin/movies-explorer-api).
+
+С самим же проектом можно ознакомиться по [этой ссылке](https://my-movies.nomoredomains.work/).
+
+<h2>Технологический стек (фронтенд)</h2>
+
+- ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)    
+- ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)  
+
+<h2>Функциональность проекта</h2>
+
+Пользователь может:
+
+- зарегистрироваться в сервисе;
+- зайти в/выйти из аккаунта;
+- изменить данные своего аккаунта;
+- искать фильмы по их названиям и продолжительности;
+- добавлять/удалять фильмы в/из избранного;
+- просматривать трейлеры фильмов, нажав на карточку фильма.
