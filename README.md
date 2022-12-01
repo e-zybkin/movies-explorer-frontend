@@ -4,8 +4,6 @@
 
 `Бэкенд` проекта находится [здесь](https://github.com/e-zybkin/movies-explorer-api).
 
-С самим же проектом можно ознакомиться по [этой ссылке](https://my-movies.nomoredomains.work/).
-
 <h2>Технологический стек (фронтенд)</h2>
 
 - ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)    
